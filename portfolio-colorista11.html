@@ -461,6 +461,30 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
   height: 100%;
   border: none;
 }
+
+/* ─── HERO VIDEO BACKGROUND ────────────────────────────────── */
+#heroVideoContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+#heroVideoContainer iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;
+  min-height: 100vh;
+  min-width: 177.77vh;
+  transform: translate(-50%, -50%);
+  border: none;
+}
+#heroVideoStage:hover #heroEditBtn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
 </style>
 </head>
 <body>
@@ -506,16 +530,16 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
   <div class="hero-video-wrap">
     <div class="hero-video-stage" id="heroVideoStage">
       <div class="video-light-tl"></div><div class="video-light-br"></div><div class="video-light-scan"></div>
-      <div class="hero-video-placeholder mask-fade" id="heroPlaceholder">
+      <div class="hero-video-placeholder mask-fade" id="heroPlaceholder" onclick="promptHeroVideoUrl(event)">
         <svg class="video-upload-icon" width="46" height="46" viewBox="0 0 52 52" fill="none" stroke="#C9A84C" stroke-width="1">
           <rect x="4" y="12" width="44" height="32" rx="3"/>
           <polygon points="20,22 20,34 34,28" fill="#C9A84C" stroke="none"/>
           <line x1="26" y1="4" x2="26" y2="12"/><line x1="20" y1="4" x2="32" y2="4"/>
         </svg>
-        <span class="video-upload-hint">Clic para cargar tu video de portada</span>
-        <input type="file" id="heroVideoInput" accept="video/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;z-index:10;">
+        <span class="video-upload-hint">Clic para pegar el link de video de portada</span>
       </div>
-      <video id="heroVideo" class="mask-fade" autoplay muted loop playsinline style="display:none;"></video>
+      <div id="heroVideoContainer" class="mask-fade" style="display:none; position:absolute; inset:0; z-index:2; pointer-events:none; overflow:hidden;"></div>
+      <button class="portfolio-item-editbtn" id="heroEditBtn" style="position:absolute; top:20px; left:20px; z-index:15; opacity:0; pointer-events:auto; transform:translateY(5px); transition:opacity .3s, transform .3s;" onclick="promptHeroVideoUrl(event)">+ Link Portada</button>
       <div class="video-blend mask-fade"></div>
     </div>
   </div>
@@ -851,15 +875,71 @@ burger.addEventListener('click',()=>toggleDrawer(!burger.classList.contains('ope
 drawer.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click',()=>toggleDrawer(false)));
 
 /* ── HERO VIDEO ──────────────────────────────────────── */
-const heroInput=document.getElementById('heroVideoInput');
-const heroVid=document.getElementById('heroVideo');
-const heroPh=document.getElementById('heroPlaceholder');
-heroInput.addEventListener('change',e=>{
-  const f=e.target.files[0];if(!f)return;
-  heroVid.src=URL.createObjectURL(f);
-  heroVid.style.display='block';heroPh.style.display='none';
-  heroVid.play().catch(()=>{});
-});
+const heroPh = document.getElementById('heroPlaceholder');
+const heroContainer = document.getElementById('heroVideoContainer');
+
+function getBackgroundEmbedUrl(url) {
+  if (!url) return '';
+  url = url.trim();
+  let ytId = '';
+  const ytRegs = [
+    /youtube\.com\/watch\?v=([^"&?\/\s]+)/,
+    /youtu\.be\/([^"&?\/\s]+)/,
+    /youtube\.com\/embed\/([^"&?\/\s]+)/,
+    /youtube\.com\/shorts\/([^"&?\/\s]+)/,
+    /youtube\.com\/live\/([^"&?\/\s]+)/
+  ];
+  for (let reg of ytRegs) {
+    const match = url.match(reg);
+    if (match && match[1]) {
+      ytId = match[1];
+      break;
+    }
+  }
+  if (ytId) {
+    return `https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1`;
+  }
+  const vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/;
+  const vimeoMatch = url.match(vimeoRegex);
+  if (vimeoMatch && vimeoMatch[1]) {
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&background=1`;
+  }
+  return url;
+}
+
+window.loadHeroVideo = function() {
+  const url = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ScMzIvxBSi4'; // Video de prueba por defecto
+  if (url) {
+    const embedUrl = getBackgroundEmbedUrl(url);
+    if (embedUrl) {
+      heroContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      heroContainer.style.display = 'block';
+      heroPh.style.display = 'none';
+    }
+  }
+};
+
+window.promptHeroVideoUrl = function(event) {
+  if (event) event.stopPropagation();
+  const currentUrl = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ScMzIvxBSi4';
+  const newUrl = prompt('Introduce la URL de YouTube o Vimeo para el video de portada:', currentUrl);
+  if (newUrl !== null) {
+    const trimmed = newUrl.trim();
+    localStorage.setItem('hero_video_url', trimmed);
+    if (trimmed) {
+      window.loadHeroVideo();
+      alert('¡Video de portada actualizado!');
+    } else {
+      heroContainer.style.display = 'none';
+      heroContainer.innerHTML = '';
+      heroPh.style.display = 'flex';
+      alert('Se ha quitado el video de portada.');
+    }
+  }
+};
+
+// Cargar el video de portada al iniciar
+window.loadHeroVideo();
 
 /* ── HERO 3D TILT ────────────────────────────────────── */
 if(!isMobile&&!noMotion){
