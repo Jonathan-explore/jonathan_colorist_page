@@ -397,6 +397,70 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
   .service-card:hover{background:transparent;}
   .service-card::before{display:none;}
 }
+
+/* ─── VIDEO LIGHTBOX ───────────────────────────────────────── */
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(8, 8, 8, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.video-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-close {
+  position: absolute;
+  top: clamp(20px, 4vw, 40px);
+  right: clamp(20px, 4vw, 40px);
+  background: none;
+  border: none;
+  color: var(--white-dim);
+  cursor: pointer;
+  padding: 12px;
+  z-index: 10002;
+  transition: color 0.3s, transform 0.3s;
+}
+.lightbox-close svg {
+  width: 28px;
+  height: 28px;
+}
+.lightbox-close:hover {
+  color: var(--gold);
+  transform: scale(1.1);
+}
+.lightbox-content {
+  width: min(1280px, 90vw);
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 6px;
+  border: 1px solid var(--black-border);
+  box-shadow: 0 24px 72px rgba(0,0,0,0.85), 0 0 0 1px rgba(201,168,76,0.12);
+  overflow: hidden;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.video-lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+.lightbox-iframe-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.lightbox-iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 </style>
 </head>
 <body>
@@ -535,76 +599,61 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
     <div class="portfolio-item reveal" data-index="0">
       <div class="portfolio-item-inner">
         <div class="portfolio-item-bg bg1"></div>
-        <video class="portfolio-item-video" id="pv0" autoplay muted loop playsinline></video>
         <div class="portfolio-item-overlay"><div>
           <div class="portfolio-item-category">Largometraje · Color Grade</div>
           <div class="portfolio-item-title">La Última Luz</div>
           <div class="portfolio-item-tags"><span class="tag">DaVinci Resolve</span><span class="tag">Cine</span><span class="tag">Teal & Orange</span></div>
         </div></div>
       </div>
-      <button class="portfolio-item-editbtn" onclick="triggerPV(0)">+ Video</button>
       <div class="portfolio-item-number">01</div>
-      <input type="file" id="pi0" accept="video/*" style="display:none;">
     </div>
 
     <div class="portfolio-item reveal reveal-d1" data-index="1">
       <div class="portfolio-item-inner">
         <div class="portfolio-item-bg bg2"></div>
-        <video class="portfolio-item-video" id="pv1" autoplay muted loop playsinline></video>
         <div class="portfolio-item-overlay"><div>
           <div class="portfolio-item-category">Publicidad · Color + Edit</div>
           <div class="portfolio-item-title">Noir Collection</div>
           <div class="portfolio-item-tags"><span class="tag">Lumetri</span><span class="tag">Moda</span></div>
         </div></div>
       </div>
-      <button class="portfolio-item-editbtn" onclick="triggerPV(1)">+ Video</button>
       <div class="portfolio-item-number">02</div>
-      <input type="file" id="pi1" accept="video/*" style="display:none;">
     </div>
 
     <div class="portfolio-item reveal reveal-d2" data-index="2">
       <div class="portfolio-item-inner">
         <div class="portfolio-item-bg bg3"></div>
-        <video class="portfolio-item-video" id="pv2" autoplay muted loop playsinline></video>
         <div class="portfolio-item-overlay"><div>
           <div class="portfolio-item-category">Documental · Edición</div>
           <div class="portfolio-item-title">Desert Gold</div>
           <div class="portfolio-item-tags"><span class="tag">Documental</span></div>
         </div></div>
       </div>
-      <button class="portfolio-item-editbtn" onclick="triggerPV(2)">+ Video</button>
       <div class="portfolio-item-number">03</div>
-      <input type="file" id="pi2" accept="video/*" style="display:none;">
     </div>
 
     <div class="portfolio-item reveal reveal-d3" data-index="3">
       <div class="portfolio-item-inner">
         <div class="portfolio-item-bg bg4"></div>
-        <video class="portfolio-item-video" id="pv3" autoplay muted loop playsinline></video>
         <div class="portfolio-item-overlay"><div>
           <div class="portfolio-item-category">Videoclip · Color</div>
           <div class="portfolio-item-title">Crimson Days</div>
           <div class="portfolio-item-tags"><span class="tag">Música</span></div>
         </div></div>
       </div>
-      <button class="portfolio-item-editbtn" onclick="triggerPV(3)">+ Video</button>
       <div class="portfolio-item-number">04</div>
-      <input type="file" id="pi3" accept="video/*" style="display:none;">
     </div>
 
     <div class="portfolio-item reveal reveal-d4" data-index="4">
       <div class="portfolio-item-inner">
         <div class="portfolio-item-bg bg5"></div>
-        <video class="portfolio-item-video" id="pv4" autoplay muted loop playsinline></video>
         <div class="portfolio-item-overlay"><div>
           <div class="portfolio-item-category">Serie · Color Grade</div>
           <div class="portfolio-item-title">Forest Green</div>
           <div class="portfolio-item-tags"><span class="tag">Serie</span></div>
         </div></div>
       </div>
-      <button class="portfolio-item-editbtn" onclick="triggerPV(4)">+ Video</button>
       <div class="portfolio-item-number">05</div>
-      <input type="file" id="pi4" accept="video/*" style="display:none;">
     </div>
 
   </div>
@@ -710,6 +759,21 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
   <div class="footer-copy">© 2025 Jonathan Ponce de León Carballo</div>
   <div class="footer-social"><a href="#">Instagram</a><a href="#">Vimeo</a><a href="#">LinkedIn</a><a href="#">Behance</a></div>
 </footer>
+
+<!-- VIDEO LIGHTBOX MODAL -->
+<div id="videoLightbox" class="video-lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar reproductor">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <div class="lightbox-content">
+    <div class="lightbox-iframe-wrapper">
+      <div id="lightboxPlayerContainer"></div>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -1014,16 +1078,105 @@ comparisonSlider.addEventListener('touchmove', e => {
 }, { passive: true });
 
 /* ── PORTFOLIO VIDEOS ────────────────────────────────── */
-window.triggerPV=function(i){document.getElementById('pi'+i).click();};
-for(let i=0;i<5;i++){
-  document.getElementById('pi'+i).addEventListener('change',function(e){
-    const f=e.target.files[0];if(!f)return;
-    const vid=document.getElementById('pv'+i);
-    vid.src=URL.createObjectURL(f);
-    vid.classList.add('has-src');
-    vid.play().catch(()=>{});
-  });
+const WORK_PROJECTS = [
+  {
+    title: "La Última Luz",
+    category: "Largometraje · Color Grade",
+    tags: ["DaVinci Resolve", "Cine", "Teal & Orange"],
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200"
+  },
+  {
+    title: "Noir Collection",
+    category: "Publicidad · Color + Edit",
+    tags: ["Lumetri", "Moda"],
+    videoUrl: "https://vimeo.com/873919421",
+    coverImage: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200"
+  },
+  {
+    title: "Desert Gold",
+    category: "Documental · Edición",
+    tags: ["Documental"],
+    videoUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+    coverImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200"
+  },
+  {
+    title: "Crimson Days",
+    category: "Videoclip · Color",
+    tags: ["Música"],
+    videoUrl: "https://vimeo.com/347119375",
+    coverImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200"
+  },
+  {
+    title: "Forest Green",
+    category: "Serie · Color Grade",
+    tags: ["Serie"],
+    videoUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+    coverImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200"
+  }
+];
+
+function getEmbedUrl(url) {
+  if (!url) return '';
+  const ytRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  const ytMatch = url.match(ytRegex);
+  if (ytMatch && ytMatch[1]) {
+    return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1`;
+  }
+  const vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/;
+  const vimeoMatch = url.match(vimeoRegex);
+  if (vimeoMatch && vimeoMatch[1]) {
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&controls=0&title=0&byline=0&portrait=0&color=C9A84C`;
+  }
+  return url;
 }
+
+// Cargar portadas de fondo si están configuradas
+WORK_PROJECTS.forEach((project, idx) => {
+  const item = document.querySelector(`.portfolio-item[data-index="${idx}"]`);
+  if (item && project.coverImage) {
+    const bg = item.querySelector('.portfolio-item-bg');
+    if (bg) {
+      bg.style.backgroundImage = `url('${project.coverImage}')`;
+      bg.style.backgroundSize = 'cover';
+      bg.style.backgroundPosition = 'center';
+    }
+  }
+});
+
+// Controladores del Lightbox
+const lightbox = document.getElementById('videoLightbox');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxContainer = document.getElementById('lightboxPlayerContainer');
+
+document.querySelectorAll('.portfolio-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const idx = parseInt(item.dataset.index);
+    const project = WORK_PROJECTS[idx];
+    if (project && project.videoUrl) {
+      const embedUrl = getEmbedUrl(project.videoUrl);
+      lightboxContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    lightboxContainer.innerHTML = '';
+  }, 400);
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) closeLightbox();
+});
+
 
 /* ── SCROLL REVEAL ───────────────────────────────────── */
 const io=new IntersectionObserver(entries=>{
