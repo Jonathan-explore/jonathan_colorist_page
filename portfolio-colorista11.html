@@ -1083,66 +1083,67 @@ const WORK_PROJECTS = [
     title: "La Última Luz",
     category: "Largometraje · Color Grade",
     tags: ["DaVinci Resolve", "Cine", "Teal & Orange"],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    coverImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200"
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Noir Collection",
     category: "Publicidad · Color + Edit",
     tags: ["Lumetri", "Moda"],
-    videoUrl: "https://vimeo.com/873919421",
-    coverImage: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200"
+    videoUrl: "https://vimeo.com/873919421" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Desert Gold",
     category: "Documental · Edición",
     tags: ["Documental"],
-    videoUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
-    coverImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200"
+    videoUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Crimson Days",
     category: "Videoclip · Color",
     tags: ["Música"],
-    videoUrl: "https://vimeo.com/347119375",
-    coverImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200"
+    videoUrl: "https://vimeo.com/347119375" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Forest Green",
     category: "Serie · Color Grade",
     tags: ["Serie"],
-    videoUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
-    coverImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200"
+    videoUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   }
 ];
 
 function getEmbedUrl(url) {
   if (!url) return '';
-  const ytRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-  const ytMatch = url.match(ytRegex);
-  if (ytMatch && ytMatch[1]) {
-    return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1`;
+  url = url.trim();
+  
+  // Parser ultra robusto de YouTube
+  let ytId = '';
+  const ytRegs = [
+    /youtube\.com\/watch\?v=([^"&?\/\s]+)/,
+    /youtu\.be\/([^"&?\/\s]+)/,
+    /youtube\.com\/embed\/([^"&?\/\s]+)/,
+    /youtube\.com\/shorts\/([^"&?\/\s]+)/,
+    /youtube\.com\/live\/([^"&?\/\s]+)/
+  ];
+  for (let reg of ytRegs) {
+    const match = url.match(reg);
+    if (match && match[1]) {
+      ytId = match[1];
+      break;
+    }
   }
+  if (ytId) {
+    return `https://www.youtube.com/embed/${ytId}?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&playsinline=1`;
+  }
+  
+  // Parser de Vimeo
   const vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/;
   const vimeoMatch = url.match(vimeoRegex);
   if (vimeoMatch && vimeoMatch[1]) {
     return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&controls=0&title=0&byline=0&portrait=0&color=C9A84C`;
   }
+  
   return url;
 }
-
-// Cargar portadas de fondo si están configuradas
-WORK_PROJECTS.forEach((project, idx) => {
-  const item = document.querySelector(`.portfolio-item[data-index="${idx}"]`);
-  if (item && project.coverImage) {
-    const bg = item.querySelector('.portfolio-item-bg');
-    if (bg) {
-      bg.style.backgroundImage = `url('${project.coverImage}')`;
-      bg.style.backgroundSize = 'cover';
-      bg.style.backgroundPosition = 'center';
-    }
-  }
-});
 
 // Controladores del Lightbox
 const lightbox = document.getElementById('videoLightbox');
