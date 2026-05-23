@@ -973,11 +973,11 @@ function getBackgroundEmbedUrl(url) {
 }
 
 window.loadHeroVideo = function() {
-  const url = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ScMzIvxBSi4'; // Video de prueba por defecto
+  const url = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ajugEZgUDV8'; // Video de prueba por defecto
   if (url) {
     const embedUrl = getBackgroundEmbedUrl(url);
     if (embedUrl) {
-      heroContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      heroContainer.innerHTML = `<iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
       heroContainer.style.display = 'block';
       heroPh.style.display = 'none';
     }
@@ -986,7 +986,7 @@ window.loadHeroVideo = function() {
 
 window.promptHeroVideoUrl = function(event) {
   if (event) event.stopPropagation();
-  const currentUrl = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ScMzIvxBSi4';
+  const currentUrl = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ajugEZgUDV8';
   const newUrl = prompt('Introduce la URL de YouTube o Vimeo para el video de portada:', currentUrl);
   if (newUrl !== null) {
     const trimmed = newUrl.trim();
@@ -1238,7 +1238,7 @@ const WORK_PROJECTS = [
     title: "La Última Luz",
     category: "Largometraje · Color Grade",
     tags: ["DaVinci Resolve", "Cine", "Teal & Orange"],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // REEMPLAZAR con tu enlace de YouTube/Vimeo
+    videoUrl: "https://www.youtube.com/watch?v=_-lbpEpiZfE" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Noir Collection",
@@ -1256,7 +1256,7 @@ const WORK_PROJECTS = [
     title: "Crimson Days",
     category: "Videoclip · Color",
     tags: ["Música"],
-    videoUrl: "https://vimeo.com/347119375" // REEMPLAZAR con tu enlace de YouTube/Vimeo
+    videoUrl: "https://www.youtube.com/watch?v=w8MhRHK89k8" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Forest Green",
@@ -1294,7 +1294,7 @@ function getEmbedUrl(url) {
   const vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/;
   const vimeoMatch = url.match(vimeoRegex);
   if (vimeoMatch && vimeoMatch[1]) {
-    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&controls=0&title=0&byline=0&portrait=0&color=C9A84C`;
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&controls=0&title=0&byline=0&portrait=0&color=C9A84C&playsinline=1`;
   }
   
   return url;
@@ -1329,7 +1329,7 @@ document.querySelectorAll('.portfolio-item').forEach(item => {
     
     if (videoUrl) {
       const embedUrl = getEmbedUrl(videoUrl);
-      lightboxContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      lightboxContainer.innerHTML = `<iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';

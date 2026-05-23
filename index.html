@@ -348,10 +348,10 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
 @keyframes ambientPulse{0%{opacity:.7;transform:scale(1);}100%{opacity:1;transform:scale(1.04);}}
 @keyframes cornerGlow{0%{opacity:.5;transform:scale(.9);}100%{opacity:1;transform:scale(1.1);}}
 
-/* ─── REDUCED MOTION ─────────────────────────────────────── */
+/* ─── REDUCED MOTION ─────────────────────────────────── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}.marquee-track{animation:none;}}
 
-/* ─── RESPONSIVE ─────────────────────────────────────────── */
+/* ─── RESPONSIVE ─────────────────────────────────────── */
 @media(max-width:1024px){
   .services-grid{grid-template-columns:repeat(2,1fr);}
   .clients-grid{grid-template-columns:repeat(4,1fr);}
@@ -359,43 +359,86 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
 @media(max-width:768px){
   :root{--nav-h:60px;}
   .nav-links{display:none;}.nav-burger{display:flex;}
+  /* ── HERO móvil ── */
   .hero{align-items:flex-end;}
-  .hero-content{width:100%;padding:0 var(--pad) clamp(40px,7vw,64px);}
-  .hero-video-wrap{position:absolute;inset:0;width:100%;height:100%;right:0;top:0;transform:none;aspect-ratio:unset;opacity:.5;}
+  .hero-content{width:100%;padding:0 var(--pad) clamp(44px,9vw,72px);}
+  .hero-title{font-size:clamp(38px,10vw,64px);}
+  .hero-name-sub{font-size:clamp(16px,4.5vw,28px);}
+  .hero-subtitle{font-size:10px;line-height:2;}
+  /* Video fondo — se extiende a toda la sección como capa de fondo */
+  .hero-video-wrap{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    right:0;top:0;
+    /* Cancelar el transform desktop (translateY -50%) */
+    transform:none !important;
+    aspect-ratio:unset;
+    opacity:.45;
+  }
   .hero-video-stage{transform:none !important;}
-  .hero-video-stage::before{filter:blur(14px);}.hero-video-stage::after{box-shadow:none;}
+  .hero-video-stage::before{filter:blur(14px);}
+  .hero-video-stage::after{box-shadow:none;}
   .video-light-tl,.video-light-br,.video-light-scan{display:none;}
-  .hero-video-wrap video,.hero-video-placeholder{-webkit-mask-image:radial-gradient(ellipse 110% 100% at 60% 50%,#000 0%,#000 28%,rgba(0,0,0,.65) 58%,transparent 100%);mask-image:radial-gradient(ellipse 110% 100% at 60% 50%,#000 0%,#000 28%,rgba(0,0,0,.65) 58%,transparent 100%);}
-  .video-blend{background:linear-gradient(to bottom,rgba(8,8,8,.2),rgba(8,8,8,.45) 55%,rgba(8,8,8,.88) 100%);}
-  .portfolio-grid{grid-template-columns:1fr;}
+  /* Máscara suave de abajo para que el texto se lea bien */
+  .hero-video-wrap .mask-fade,
+  .hero-video-wrap video{
+    -webkit-mask-image:radial-gradient(ellipse 120% 100% at 50% 40%,#000 0%,#000 30%,rgba(0,0,0,.6) 60%,transparent 100%);
+    mask-image:radial-gradient(ellipse 120% 100% at 50% 40%,#000 0%,#000 30%,rgba(0,0,0,.6) 60%,transparent 100%);
+  }
+  .video-blend{
+    background:linear-gradient(to bottom,rgba(8,8,8,.15),rgba(8,8,8,.4) 50%,rgba(8,8,8,.92) 100%);
+  }
+  /* iframe del hero en móvil — cubre todo el fondo */
+  #heroVideoContainer iframe{
+    width:177.78vh;
+    height:100vh;
+    min-width:100vw;
+    min-height:56.25vw;
+  }
+  /* ── PORTFOLIO móvil ── */
+  .portfolio-grid{grid-template-columns:1fr;gap:8px;}
   .portfolio-item{grid-column:1/-1 !important;grid-row:auto !important;aspect-ratio:16/9 !important;}
+  /* ── SERVICIOS ── */
   .services-grid{grid-template-columns:1fr;}
   .clients-grid{grid-template-columns:repeat(3,1fr);}
   .about-section{grid-template-columns:1fr;}
   .about-left{border-right:none;border-bottom:1px solid var(--black-border);padding-bottom:clamp(40px,6vw,60px);}
-  .contact-inner{grid-template-columns:1fr;gap:48px;}
+  /* ── CONTACTO ── */
+  .contact-inner{grid-template-columns:1fr;gap:40px;}
+  .contact-heading{font-size:clamp(40px,11vw,72px);letter-spacing:-1px;}
+  /* ── REEL ── */
   .reel-placeholder-split{flex-direction:column;}
   .reel-upload-divider{width:60%;height:1px;align-self:center;}
-  .reel-upload-zone{min-height:160px;}
+  .reel-upload-zone{min-height:140px;}
   .reel-stats{flex-direction:column;}
-  .reel-stat{border-right:none;border-bottom:1px solid var(--black-border);}
+  .reel-stat{border-right:none;border-bottom:1px solid var(--black-border);padding-left:var(--pad);}
+  .reel-stat:last-child{border-bottom:none;}
+  /* ── FOOTER ── */
   footer{flex-direction:column;text-align:center;}
   .footer-social{justify-content:center;flex-wrap:wrap;}
-  .section-header{flex-direction:column;align-items:flex-start;gap:14px;}
+  /* ── SECTION HEADER ── */
+  .section-header{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:48px;}
 }
 @media(max-width:480px){
   .clients-grid{grid-template-columns:repeat(2,1fr);}
-  .hero-cta{gap:18px;}
+  .hero-cta{gap:14px;flex-direction:column;align-items:flex-start;}
   .btn-primary{padding:12px 26px;}
+  .contact-heading{font-size:clamp(36px,12vw,56px);}
+  .reel-stat-number{font-size:clamp(28px,8vw,44px);}
+  /* Lightbox en móvil pequeño */
+  .lightbox-content{width:96vw;}
 }
 @media(hover:none){
+  /* En touch no hay hover: overlays permanentes, sin efectos de elevación */
   .portfolio-item{transform:none !important;box-shadow:0 4px 16px rgba(0,0,0,.4) !important;}
-  .portfolio-item-overlay{opacity:.85;}
-  .portfolio-item-number{opacity:.5;}
-  .portfolio-item-editbtn{opacity:.8;transform:none;}
+  .portfolio-item-overlay{opacity:1;}
+  .portfolio-item-number{opacity:.6;}
+  .portfolio-item-editbtn{opacity:1;transform:none;}
   .reel-controls.active{display:flex;opacity:1;}
   .service-card:hover{background:transparent;}
   .service-card::before{display:none;}
+  /* iOS fix: evitar zoom automático al hacer focus en inputs */
+  .form-group input,.form-group textarea{font-size:16px;}
 }
 
 /* ─── VIDEO LIGHTBOX ───────────────────────────────────────── */
@@ -474,16 +517,25 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
   position: absolute;
   top: 50%;
   left: 50%;
+  /* Asegura cobertura completa en cualquier ratio de pantalla */
   width: 100vw;
-  height: 56.25vw;
-  min-height: 100vh;
-  min-width: 177.77vh;
+  height: 56.25vw;     /* 16:9 — ocupa todo el ancho */
+  min-height: 100%;    /* Nunca más pequeño que la sección */
+  min-width: 177.78vh; /* 16:9 — ocupa toda la altura */
   transform: translate(-50%, -50%);
   border: none;
+  pointer-events: none;
 }
 #heroVideoStage:hover #heroEditBtn {
   opacity: 1 !important;
   transform: translateY(0) !important;
+}
+/* Botón editar portada — touch */
+@media(hover:none){
+  #heroEditBtn{
+    opacity: 0.75 !important;
+    transform: translateY(0) !important;
+  }
 }
 </style>
 </head>
@@ -865,14 +917,27 @@ window.addEventListener('scroll',()=>{
   lastY=y;
 },{passive:true});
 function toggleDrawer(open){
-  drawer.style.display=open?'flex':'none';
-  requestAnimationFrame(()=>drawer.classList.toggle('open',open));
+  if(open){
+    drawer.style.display='flex';
+    // Forzar repaint antes de añadir la clase para la transición
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>drawer.classList.add('open'));
+    });
+  } else {
+    drawer.classList.remove('open');
+    // Esperar a que termine la transición antes de ocultar
+    drawer.addEventListener('transitionend',()=>{
+      if(!drawer.classList.contains('open')) drawer.style.display='none';
+    },{once:true});
+  }
   burger.classList.toggle('open',open);
   drawer.setAttribute('aria-hidden',String(!open));
   document.body.style.overflow=open?'hidden':'';
 }
 burger.addEventListener('click',()=>toggleDrawer(!burger.classList.contains('open')));
 drawer.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click',()=>toggleDrawer(false)));
+// Cerrar drawer con tecla Escape
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&burger.classList.contains('open')) toggleDrawer(false); });
 
 /* ── HERO VIDEO ──────────────────────────────────────── */
 const heroPh = document.getElementById('heroPlaceholder');
@@ -908,11 +973,11 @@ function getBackgroundEmbedUrl(url) {
 }
 
 window.loadHeroVideo = function() {
-  const url = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ScMzIvxBSi4'; // Video de prueba por defecto
+  const url = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ajugEZgUDV8'; // Video de prueba por defecto
   if (url) {
     const embedUrl = getBackgroundEmbedUrl(url);
     if (embedUrl) {
-      heroContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      heroContainer.innerHTML = `<iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
       heroContainer.style.display = 'block';
       heroPh.style.display = 'none';
     }
@@ -921,7 +986,7 @@ window.loadHeroVideo = function() {
 
 window.promptHeroVideoUrl = function(event) {
   if (event) event.stopPropagation();
-  const currentUrl = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ScMzIvxBSi4';
+  const currentUrl = localStorage.getItem('hero_video_url') || 'https://www.youtube.com/watch?v=ajugEZgUDV8';
   const newUrl = prompt('Introduce la URL de YouTube o Vimeo para el video de portada:', currentUrl);
   if (newUrl !== null) {
     const trimmed = newUrl.trim();
@@ -959,10 +1024,13 @@ if(!isMobile&&!noMotion){
   })();
 }
 
-/* ── PARALLAX suave — toda la página ─────────────────── */
+/* ── PARALLAX suave — solo desktop ──────────────────── */
 if(!noMotion&&!isMobile){
   const hc  = document.querySelector('.hero-content');
   const hBg = document.querySelector('.hero-bg');
+  // IMPORTANTE: En desktop el hero-video-wrap usa translateY(-50%) para centrarse.
+  // El parallax modifica ese transform para el efecto de profundidad.
+  // En móvil esto se omite completamente (isMobile===true) para no romper el layout.
   const hVW = document.querySelector('.hero-video-wrap');
 
   // Activar capas de sección solo tras completar su reveal
@@ -1009,6 +1077,8 @@ if(!noMotion&&!isMobile){
       hc.style.opacity=String(Math.max(0,1-sy/vh*1.4));
     }
     if(hBg) hBg.style.transform=`translateY(${(cap*.04).toFixed(2)}px)`;
+    // En desktop el video está centrado con translateY(-50%).
+    // El parallax añade un pequeño desplazamiento adicional relativo a ese origen.
     if(hVW) hVW.style.transform=`translateY(calc(-50% + ${(cap*.11).toFixed(2)}px))`;
 
     // Secciones — deriva suave al pasar por el viewport
@@ -1168,7 +1238,7 @@ const WORK_PROJECTS = [
     title: "La Última Luz",
     category: "Largometraje · Color Grade",
     tags: ["DaVinci Resolve", "Cine", "Teal & Orange"],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // REEMPLAZAR con tu enlace de YouTube/Vimeo
+    videoUrl: "https://www.youtube.com/watch?v=_-lbpEpiZfE" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Noir Collection",
@@ -1186,7 +1256,7 @@ const WORK_PROJECTS = [
     title: "Crimson Days",
     category: "Videoclip · Color",
     tags: ["Música"],
-    videoUrl: "https://vimeo.com/347119375" // REEMPLAZAR con tu enlace de YouTube/Vimeo
+    videoUrl: "https://www.youtube.com/watch?v=w8MhRHK89k8" // REEMPLAZAR con tu enlace de YouTube/Vimeo
   },
   {
     title: "Forest Green",
@@ -1224,7 +1294,7 @@ function getEmbedUrl(url) {
   const vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/;
   const vimeoMatch = url.match(vimeoRegex);
   if (vimeoMatch && vimeoMatch[1]) {
-    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&controls=0&title=0&byline=0&portrait=0&color=C9A84C`;
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&controls=0&title=0&byline=0&portrait=0&color=C9A84C&playsinline=1`;
   }
   
   return url;
@@ -1259,7 +1329,7 @@ document.querySelectorAll('.portfolio-item').forEach(item => {
     
     if (videoUrl) {
       const embedUrl = getEmbedUrl(videoUrl);
-      lightboxContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      lightboxContainer.innerHTML = `<iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
