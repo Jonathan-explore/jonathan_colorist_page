@@ -605,6 +605,7 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
           <div class="portfolio-item-tags"><span class="tag">DaVinci Resolve</span><span class="tag">Cine</span><span class="tag">Teal & Orange</span></div>
         </div></div>
       </div>
+      <button class="portfolio-item-editbtn" onclick="promptVideoUrl(event, 0)">+ Link</button>
       <div class="portfolio-item-number">01</div>
     </div>
 
@@ -617,6 +618,7 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
           <div class="portfolio-item-tags"><span class="tag">Lumetri</span><span class="tag">Moda</span></div>
         </div></div>
       </div>
+      <button class="portfolio-item-editbtn" onclick="promptVideoUrl(event, 1)">+ Link</button>
       <div class="portfolio-item-number">02</div>
     </div>
 
@@ -629,6 +631,7 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
           <div class="portfolio-item-tags"><span class="tag">Documental</span></div>
         </div></div>
       </div>
+      <button class="portfolio-item-editbtn" onclick="promptVideoUrl(event, 2)">+ Link</button>
       <div class="portfolio-item-number">03</div>
     </div>
 
@@ -641,6 +644,7 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
           <div class="portfolio-item-tags"><span class="tag">Música</span></div>
         </div></div>
       </div>
+      <button class="portfolio-item-editbtn" onclick="promptVideoUrl(event, 3)">+ Link</button>
       <div class="portfolio-item-number">04</div>
     </div>
 
@@ -653,6 +657,7 @@ footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-
           <div class="portfolio-item-tags"><span class="tag">Serie</span></div>
         </div></div>
       </div>
+      <button class="portfolio-item-editbtn" onclick="promptVideoUrl(event, 4)">+ Link</button>
       <div class="portfolio-item-number">05</div>
     </div>
 
@@ -1150,16 +1155,37 @@ const lightbox = document.getElementById('videoLightbox');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxContainer = document.getElementById('lightboxPlayerContainer');
 
+window.promptVideoUrl = function(event, idx) {
+  if (event) event.stopPropagation(); // Evitar abrir lightbox si se hace clic desde el botón
+  const project = WORK_PROJECTS[idx];
+  const currentUrl = localStorage.getItem(`portfolio_video_${idx}`) || (project ? project.videoUrl : '');
+  const newUrl = prompt(`Introduce la URL de YouTube o Vimeo para el Proyecto ${idx + 1}:`, currentUrl);
+  if (newUrl !== null) {
+    const trimmed = newUrl.trim();
+    localStorage.setItem(`portfolio_video_${idx}`, trimmed);
+    if (trimmed) {
+      alert(`¡Video guardado! Haz clic en la tarjeta del proyecto para reproducirlo.`);
+    } else {
+      alert(`Se ha limpiado el enlace del video.`);
+    }
+  }
+};
+
 document.querySelectorAll('.portfolio-item').forEach(item => {
-  item.addEventListener('click', () => {
+  item.addEventListener('click', (e) => {
     const idx = parseInt(item.dataset.index);
     const project = WORK_PROJECTS[idx];
-    if (project && project.videoUrl) {
-      const embedUrl = getEmbedUrl(project.videoUrl);
+    const videoUrl = localStorage.getItem(`portfolio_video_${idx}`) || (project ? project.videoUrl : '');
+    
+    if (videoUrl) {
+      const embedUrl = getEmbedUrl(videoUrl);
       lightboxContainer.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+    } else {
+      // Si no hay videoUrl, abrir diálogo de inserción al hacer clic
+      window.promptVideoUrl(e, idx);
     }
   });
 });
