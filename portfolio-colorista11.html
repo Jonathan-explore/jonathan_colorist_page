@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jonathan Ponce de León — Videographer & Editor based in Randers, Denmark. Sony FX6, DaVinci Resolve. Video, color grading and short-form content.">
+<title>Jonathan Ponce de León — Videographer & Editor · Randers, Denmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bebas+Neue&family=Montserrat:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bebas+Neue&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bebas+Neue&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ─── RESET ────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:#7A5E28;
+  --black:#080808;--black-card:#141414;--black-border:#1E1E1E;
+  --white:#F5F0E8;--white-dim:#A09880;
+  --pad:clamp(20px,5vw,60px);--nav-h:72px;
+}
+body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+@media(hover:none){body{cursor:auto;}}
+
+/* ─── LOADER ────────────────────────────────────────────── */
+#loader{
+  position:fixed;inset:0;z-index:99999;background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-logo{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;font-style:italic;color:var(--gold);letter-spacing:4px;opacity:0;animation:fadeUp .8s ease .2s forwards;}
+.loader-line-wrap{width:200px;height:1px;background:rgba(201,168,76,.15);overflow:hidden;}
+.loader-line{height:100%;background:linear-gradient(to right,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;animation:loaderFill 1.4s cubic-bezier(.4,0,.2,1) .4s forwards;}
+.loader-pct{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--white-dim);opacity:0;animation:fadeIn .6s ease .3s forwards;}
+@keyframes loaderFill{to{transform:scaleX(1);}}
+
+/* ─── NOISE ─────────────────────────────────────────────── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");opacity:.5;}
+
+/* ─── CURSOR ─────────────────────────────────────────────── */
+.cursor,.cursor-ring{pointer-events:none;position:fixed;left:0;top:0;z-index:9999;transform:translate(-50%,-50%);}
+.cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;}
+.cursor-ring{width:36px;height:36px;border-radius:50%;z-index:9998;border:1px solid rgba(201,168,76,.5);transition:width .3s,height .3s,opacity .3s,background .3s;}
+.cursor-ring.hov{width:56px;height:56px;opacity:.45;}
+.cursor-ring.click{width:20px;height:20px;background:rgba(201,168,76,.2);}
+@media(hover:none){.cursor,.cursor-ring{display:none;}}
+
+/* ─── NAV ────────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 var(--pad);height:var(--nav-h);display:flex;justify-content:space-between;align-items:center;transition:background .4s,transform .3s,padding .4s;}
+nav::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.92),transparent);z-index:-1;pointer-events:none;transition:opacity .4s;}
+nav.scrolled{background:rgba(8,8,8,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:0 var(--pad);}
+nav.scrolled::after{opacity:0;}
+nav.hidden{transform:translateY(-100%);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--white-dim);text-decoration:none;position:relative;transition:color .3s;padding-bottom:4px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .4s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.nav-burger span{display:block;width:24px;height:1px;background:var(--white);transition:transform .35s,opacity .35s,width .35s;transform-origin:center;}
+.nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.nav-burger.open span:nth-child(2){opacity:0;width:0;}
+.nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.nav-drawer{display:none;position:fixed;inset:0;z-index:999;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;transition:opacity .35s;}
+.nav-drawer.open{opacity:1;}
+.nav-drawer a{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,8vw,52px);font-weight:300;color:var(--white-dim);text-decoration:none;letter-spacing:2px;transition:color .3s;}
+.nav-drawer a:hover{color:var(--gold);}
+.nav-drawer-social{display:flex;gap:28px;margin-top:12px;}
+.nav-drawer-social a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;font-family:'Montserrat',sans-serif;}
+
+/* ─── LANGUAGE TOGGLE ────────────────────────────────────── */
+.nav-right{display:flex;align-items:center;gap:26px;}
+.lang-toggle{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:5px 12px;cursor:pointer;font-family:'Montserrat',sans-serif;transition:border-color .3s;-webkit-tap-highlight-color:transparent;}
+.lang-toggle:hover{border-color:var(--gold);}
+.lang-toggle .lang-opt{font-size:10px;letter-spacing:2px;color:var(--white-dim);transition:color .3s;}
+.lang-toggle .lang-opt.active{color:var(--gold);}
+.lang-toggle .lang-sep{font-size:10px;color:rgba(245,240,232,.2);}
+.nav-drawer-lang{margin-top:22px;}
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero{position:relative;height:100svh;min-height:560px;display:flex;align-items:center;overflow:hidden;background:var(--black);}
+.hero-bg{position:absolute;inset:0;z-index:0;will-change:transform;background:radial-gradient(ellipse 40% 60% at 15% 50%,rgba(212,112,42,.03),transparent 50%),linear-gradient(135deg,#050505,#0D0B09 50%,#080808);}
+#particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:particleFloat var(--dur) ease-in-out var(--delay) infinite;}
+@keyframes particleFloat{0%{opacity:0;transform:translateY(0) translateX(0);}20%{opacity:.55;}80%{opacity:.15;}100%{opacity:0;transform:translateY(calc(var(--vy)*1px)) translateX(calc(var(--vx)*1px));}}
+
+/* VIDEO HERO */
+.hero-video-wrap{position:absolute;right:-2%;top:50%;transform:translateY(-50%);width:66%;aspect-ratio:16/9;z-index:2;perspective:2000px;will-change:transform;}
+.hero-video-stage{position:absolute;inset:0;transform:rotateY(-1.5deg) rotateX(0.5deg);transform-style:preserve-3d;will-change:transform;}
+.hero-video-stage::before{content:'';position:absolute;inset:-16% -10%;background:radial-gradient(ellipse 68% 58% at 42% 50%,rgba(201,168,76,.11) 0%,rgba(201,100,20,.04) 45%,transparent 72%),radial-gradient(ellipse 38% 75% at 82% 28%,rgba(100,140,220,.05) 0%,transparent 58%);filter:blur(26px);z-index:0;pointer-events:none;animation:ambientPulse 6s ease-in-out infinite alternate;}
+.hero-video-stage::after{content:'';position:absolute;inset:-1px;border-radius:6px;z-index:4;pointer-events:none;box-shadow:0 -1px 0 0 rgba(220,180,90,.45),-1px 0 0 0 rgba(201,168,76,.28),1px 0 0 0 rgba(40,60,100,.2),0 1px 0 0 rgba(10,8,5,.5),0 0 36px -4px rgba(201,140,40,.18),0 0 72px -8px rgba(201,140,40,.08),0 20px 50px -10px rgba(0,0,0,.75);}
+.video-light-tl{position:absolute;top:-28px;left:-28px;width:140px;height:140px;background:radial-gradient(circle,rgba(240,200,80,.24) 0%,transparent 70%);filter:blur(16px);z-index:3;pointer-events:none;animation:cornerGlow 5s ease-in-out infinite alternate;}
+.video-light-br{position:absolute;bottom:-22px;right:-22px;width:110px;height:110px;background:radial-gradient(circle,rgba(80,120,200,.15) 0%,transparent 70%);filter:blur(18px);z-index:3;pointer-events:none;animation:cornerGlow 5s ease-in-out infinite alternate-reverse;}
+.video-light-scan{position:absolute;top:-1px;left:12%;right:12%;height:2px;background:linear-gradient(to right,transparent,rgba(240,200,90,.55) 30%,rgba(255,220,120,.85) 50%,rgba(240,200,90,.55) 70%,transparent);filter:blur(1px);z-index:5;pointer-events:none;border-radius:2px;}
+.mask-fade{-webkit-mask-image:radial-gradient(ellipse 80% 82% at 54% 50%,#000 0%,#000 26%,rgba(0,0,0,.93) 44%,rgba(0,0,0,.7) 58%,rgba(0,0,0,.32) 72%,rgba(0,0,0,.07) 86%,transparent 100%);mask-image:radial-gradient(ellipse 80% 82% at 54% 50%,#000 0%,#000 26%,rgba(0,0,0,.93) 44%,rgba(0,0,0,.7) 58%,rgba(0,0,0,.32) 72%,rgba(0,0,0,.07) 86%,transparent 100%);}
+.hero-video-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:5px;z-index:2;}
+.video-blend{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:5px;background:radial-gradient(ellipse 55% 55% at 50% 50%,transparent 40%,rgba(8,8,8,.16) 72%,rgba(8,8,8,.5) 100%),linear-gradient(to left,transparent 32%,rgba(8,8,8,.5) 100%);}
+.hero-video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border-radius:5px;z-index:2;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,168,76,.07) 0%,transparent 70%),linear-gradient(135deg,#0E0C09,#0A0806);transition:background .4s;cursor:pointer;}
+.hero-video-placeholder:hover{background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,168,76,.13) 0%,transparent 70%),linear-gradient(135deg,#110E0A,#0D0A07);}
+.video-upload-icon{opacity:.3;transition:opacity .3s;}
+.hero-video-placeholder:hover .video-upload-icon{opacity:.55;}
+.video-upload-hint{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.5);text-align:center;transition:color .3s;}
+.hero-video-placeholder:hover .video-upload-hint{color:rgba(201,168,76,.85);}
+
+/* HERO CONTENT */
+.hero-content{position:relative;z-index:10;padding:0 var(--pad);width:min(520px,52%);will-change:transform,opacity;}
+.hero-eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;transform:translateY(20px);animation:fadeUp 1s ease .4s forwards;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,104px);font-weight:300;line-height:.92;letter-spacing:-1px;margin-bottom:6px;opacity:0;transform:translateY(30px);animation:fadeUp 1.2s ease .6s forwards;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-title .line2{display:block;margin-left:clamp(18px,3.5vw,64px);font-size:clamp(30px,4vw,72px);}
+.hero-name-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,42px);font-weight:300;font-style:italic;color:var(--gold-dim);letter-spacing:5px;margin-bottom:28px;opacity:0;transform:translateY(20px);animation:fadeUp 1s ease .75s forwards;}
+.hero-subtitle{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--white-dim);line-height:2.2;margin-bottom:40px;opacity:0;transform:translateY(20px);animation:fadeUp 1s ease .9s forwards;}
+.hero-cta{display:flex;align-items:center;gap:32px;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:fadeUp 1s ease 1.1s forwards;}
+.btn-primary{display:inline-flex;align-items:center;gap:14px;padding:14px 34px;border:1px solid var(--gold);color:var(--black);background:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;font-family:'Montserrat',sans-serif;transition:all .4s;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--white);transform:translateX(-101%);transition:transform .4s;}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-primary span{position:relative;z-index:1;}
+.btn-ghost{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--white-dim);text-decoration:none;transition:color .3s;-webkit-tap-highlight-color:transparent;}
+.btn-ghost:hover{color:var(--gold);}
+.btn-ghost .arrow{width:28px;height:1px;background:currentColor;transition:width .3s;position:relative;}
+.btn-ghost .arrow::after{content:'';position:absolute;right:-1px;top:-3px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg);}
+.btn-ghost:hover .arrow{width:44px;}
+.hero-scroll{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:10;opacity:0;animation:fadeIn 1s ease 1.8s forwards;}
+.hero-scroll span{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--white-dim);writing-mode:vertical-rl;transform:rotate(180deg);}
+.scroll-line{width:1px;height:54px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2.2s ease-in-out infinite;}
+
+/* ─── SECTION SHARED ─────────────────────────────────────── */
+.section-header{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;gap:24px;flex-wrap:wrap;}
+.section-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;}
+.section-label::before{content:'';display:inline-block;width:36px;height:1px;background:var(--gold);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5.5vw,76px);font-weight:300;line-height:1;letter-spacing:-1px;}
+.section-title em{font-style:italic;color:var(--gold);}
+
+/* ─── REEL ───────────────────────────────────────────────── */
+.reel-section{padding:clamp(80px,12vw,160px) 0;}
+.reel-player-wrap{margin:0 var(--pad);perspective:1400px;}
+.reel-player{
+  position:relative;aspect-ratio:16/9;background:#0A0908;overflow:hidden;
+  border-radius:8px;border:1px solid var(--black-border);
+  transform:translateY(0) scale(1);
+  box-shadow:0 8px 48px rgba(0,0,0,.6);
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1),box-shadow .55s ease;
+}
+.reel-player:hover{
+  transform:translateY(-10px) scale(1.010);
+  box-shadow:0 36px 72px rgba(0,0,0,.75),0 0 0 1px rgba(201,168,76,.2),0 0 60px -12px rgba(201,168,76,.18);
+}
+.reel-player::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(201,168,76,.7),transparent);transform:scaleX(0);transition:transform .5s ease;z-index:10;pointer-events:none;border-radius:8px 8px 0 0;}
+.reel-player:hover::after{transform:scaleX(1);}
+
+/* Placeholder */
+.reel-placeholder{position:absolute;inset:0;display:flex;align-items:stretch;justify-content:stretch;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,168,76,.07),transparent 70%),linear-gradient(135deg,#0D0C0A,#111008);z-index:2;}
+.reel-placeholder-split {display:flex;width:100%;height:100%;}
+.reel-upload-zone {flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;transition:background .3s;padding:20px;}
+.reel-upload-zone:hover {background:rgba(201,168,76,.04);}
+.reel-upload-zone input[type="file"] {position:absolute;inset:0;opacity:0;cursor:pointer;z-index:5;}
+.reel-upload-divider {width:1px;background:rgba(201,168,76,.15);height:60%;align-self:center;}
+.reel-upload-badge {font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--white-dim);border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:2px;margin-bottom:6px;transition:all .3s;}
+.reel-upload-zone:hover .reel-upload-badge {border-color:var(--gold);color:var(--gold);}
+.reel-upload-zone-title {font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--white);font-weight:400;}
+.reel-upload-zone-hint {font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.4);transition:color .3s;}
+.reel-upload-zone:hover .reel-upload-zone-hint {color:rgba(201,168,76,.85);}
+.reel-upload-zone.loaded .reel-upload-badge {background:var(--gold);border-color:var(--gold);color:var(--black);font-weight:500;}
+.reel-upload-zone.loaded .reel-upload-zone-hint {color:var(--gold-light);}
+
+/* Componente Comparador de Videos Antes y Después */
+.comparison-slider{display:none;position:absolute;inset:0;--split-pos:50%;}
+.comparison-slider.active{display:block;}
+.video-panel{position:absolute;top:0;left:0;width:100%;height:100%;}
+.video-panel video,.video-panel img{width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden;}
+.video-raw{z-index:1;}
+.video-graded{z-index:2;clip-path:polygon(var(--split-pos) 0,100% 0,100% 100%,var(--split-pos) 100%);}
+.video-label {position:absolute;top:20px;background:rgba(8,8,8,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;z-index:5;pointer-events:none;border-radius:2px;}
+.left-label {left:20px;}
+.right-label {right:20px;border-color:rgba(201,168,76,.4);color:var(--gold-light);}
+
+/* Línea divisoria y manija */
+.slider-divider {position:absolute;top:0;bottom:0;left:var(--split-pos);width:1px;background:rgba(201,168,76,.7);z-index:4;transform:translateX(-50%) translateZ(0);pointer-events:none;box-shadow:0 0 10px rgba(201,168,76,.5);display:flex;align-items:center;justify-content:center;backface-visibility:hidden;}
+.slider-handle {width:38px;height:38px;border-radius:50%;background:rgba(8,8,8,.9);border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.6);pointer-events:none;}
+.slider-handle svg {width:14px;height:14px;transition:transform 0.2s;}
+
+/* Botón discreto flotante para resetear videos */
+.reel-reset-btn {position:absolute;bottom:20px;right:20px;z-index:5;background:rgba(8,8,8,0.75);border:1px solid rgba(201,168,76,0.35);color:var(--white-dim);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;border-radius:2px;font-family:'Montserrat',sans-serif;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:all 0.3s;display:none;}
+.reel-reset-btn:hover {color:var(--gold);border-color:var(--gold);background:rgba(8,8,8,0.9);}
+.reel-reset-btn.active {display:block;}
+
+/* Placeholder de subida para LUTs */
+.luts-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lut-upload-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin-top: 10px;
+}
+.lut-upload-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  border-radius: 4px;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.lut-upload-item:hover {
+  background: rgba(201, 168, 76, 0.03);
+  border-color: rgba(201, 168, 76, 0.25);
+}
+.lut-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--white-dim);
+}
+.lut-upload-btn-action {
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: var(--gold-light);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s;
+}
+.lut-upload-btn-action:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+.lut-status {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+.lut-upload-item.loaded {
+  border-color: rgba(201, 168, 76, 0.6);
+  background: rgba(201, 168, 76, 0.05);
+}
+.lut-upload-item.loaded .lut-status {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* Selector de LUTs flotante */
+.lut-selector-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  background: rgba(8, 8, 8, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.lut-select-btn {
+  background: transparent;
+  border: none;
+  color: var(--white-dim);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+}
+.lut-select-btn:hover {
+  color: var(--white);
+}
+.lut-select-btn.active {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 2px 10px rgba(201, 168, 76, 0.4);
+}
+
+.reel-stats{display:flex;margin-top:56px;padding:0 var(--pad);border-top:1px solid var(--black-border);}
+.reel-stat{flex:1;padding:40px 0 40px 32px;border-right:1px solid var(--black-border);}
+.reel-stat:last-child{border-right:none;}
+.reel-stat-number{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:var(--gold);line-height:1;margin-bottom:8px;}
+.reel-stat-number sup{font-size:.45em;vertical-align:super;}
+.reel-stat-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--white-dim);}
+
+/* ─── PORTFOLIO ──────────────────────────────────────────── */
+.portfolio-section{padding:clamp(80px,12vw,160px) 0;}
+.portfolio-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;padding:0 var(--pad);}
+.portfolio-item{
+  position:relative;overflow:visible;cursor:pointer;background:var(--black-card);
+  transform:translateY(0) scale(1);
+  box-shadow:0 4px 24px rgba(0,0,0,.4);
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1),box-shadow .55s ease,z-index 0s;
+  z-index:1;border-radius:2px;
+}
+.portfolio-item-inner{position:absolute;inset:0;overflow:hidden;border-radius:2px;}
+.portfolio-item:nth-child(1){grid-column:1/8;aspect-ratio:16/10;}
+.portfolio-item:nth-child(2){grid-column:8/13;aspect-ratio:4/5;}
+.portfolio-item:nth-child(3){grid-column:1/5;grid-row:2;aspect-ratio:4/3;}
+.portfolio-item:nth-child(4){grid-column:5/9;grid-row:2;aspect-ratio:4/3;}
+.portfolio-item:nth-child(5){grid-column:9/13;grid-row:2;aspect-ratio:4/3;}
+/* Pop + antigravity sin ángulo */
+.portfolio-item:hover{
+  transform:translateY(-14px) scale(1.025);
+  box-shadow:0 36px 72px rgba(0,0,0,.8),0 0 0 1px rgba(201,168,76,.3),0 0 60px -10px rgba(201,168,76,.2);
+  z-index:10;
+}
+/* Borde dorado top al pop */
+.portfolio-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(201,168,76,.9),transparent);transform:scaleX(0);transition:transform .45s ease;z-index:6;pointer-events:none;border-radius:2px 2px 0 0;}
+.portfolio-item:hover::before{transform:scaleX(1);}
+
+.portfolio-item-bg{position:absolute;inset:0;transition:transform .7s cubic-bezier(.25,.46,.45,.94);}
+.portfolio-item:hover .portfolio-item-bg{transform:scale(1.04);}
+
+/* Video en cada item */
+.portfolio-item-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .6s ease;}
+.portfolio-item-video.has-src{opacity:1;}
+
+/* Overlay de info */
+.portfolio-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.92),transparent 55%);opacity:0;transition:opacity .45s;display:flex;align-items:flex-end;padding:clamp(16px,3vw,34px);z-index:3;}
+.portfolio-item:hover .portfolio-item-overlay{opacity:1;}
+.portfolio-item-category{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.portfolio-item-title{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,28px);font-weight:300;margin-bottom:8px;}
+.portfolio-item-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--white-dim);border:1px solid rgba(255,255,255,.15);padding:3px 8px;}
+.portfolio-item-number{position:absolute;top:18px;right:18px;font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(201,168,76,.4);letter-spacing:2px;opacity:0;transition:opacity .45s;z-index:4;}
+.portfolio-item:hover .portfolio-item-number{opacity:1;}
+
+/* Botón + Video */
+.portfolio-item-editbtn{
+  position:absolute;top:12px;left:12px;z-index:8;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(8,8,8,.85);border:1px solid rgba(201,168,76,.35);
+  color:rgba(201,168,76,.7);font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 12px;cursor:pointer;
+  opacity:0;transition:opacity .3s,transform .3s;
+  font-family:'Montserrat',sans-serif;backdrop-filter:blur(6px);
+  transform:translateY(5px);border-radius:2px;
+}
+.portfolio-item:hover .portfolio-item-editbtn{opacity:1;transform:translateY(0);}
+.portfolio-item-editbtn:hover{color:var(--gold);border-color:var(--gold);}
+
+/* Paletas de color */
+.bg1{background:linear-gradient(135deg,#1A0E05,#0D0805 40%,#150C08);}
+.bg2{background:linear-gradient(225deg,#0A0F15,#060A10 50%,#080D14);}
+.bg3{background:linear-gradient(45deg,#0F1008,#080905);}
+.bg4{background:linear-gradient(135deg,#120A10,#0A0608);}
+.bg5{background:linear-gradient(315deg,#0E100A,#080A06);}
+.bg1::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 40%,rgba(201,120,40,.25),transparent 60%),radial-gradient(ellipse 50% 80% at 80% 70%,rgba(40,60,100,.15),transparent 50%);}
+.bg2::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 40% 30%,rgba(180,220,255,.12),transparent 50%),radial-gradient(ellipse 40% 60% at 70% 80%,rgba(20,40,80,.2),transparent 60%);}
+.bg3::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(180,160,80,.18),transparent 60%);}
+.bg4::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 40% 50%,rgba(200,80,80,.15),transparent 60%);}
+.bg5::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 60% 40%,rgba(80,200,150,.12),transparent 55%);}
+
+/* ─── MARQUEE ────────────────────────────────────────────── */
+.marquee-section{padding:72px 0;border-top:1px solid var(--black-border);border-bottom:1px solid var(--black-border);overflow:hidden;}
+.marquee-track{display:flex;width:max-content;animation:marquee 22s linear infinite;}
+.marquee-section:hover .marquee-track{animation-play-state:paused;}
+.marquee-item{display:flex;align-items:center;gap:44px;padding:0 44px;white-space:nowrap;}
+.marquee-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,33px);font-weight:300;font-style:italic;color:rgba(245,240,232,.15);letter-spacing:2px;}
+.marquee-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;opacity:.45;flex-shrink:0;}
+
+/* ─── SERVICES ───────────────────────────────────────────── */
+.services-section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--black-border);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border-top:1px solid var(--black-border);border-left:1px solid var(--black-border);}
+.service-card{border-right:1px solid var(--black-border);border-bottom:1px solid var(--black-border);padding:clamp(28px,4vw,52px) clamp(22px,3.5vw,42px);position:relative;overflow:hidden;transition:background .4s;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .5s;}
+.service-card:hover::before{transform:scaleX(1);}
+.service-card:hover{background:rgba(201,168,76,.03);}
+.service-number{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5.5vw,66px);font-weight:300;color:rgba(201,168,76,.12);line-height:1;margin-bottom:26px;transition:color .4s;}
+.service-card:hover .service-number{color:rgba(201,168,76,.22);}
+.service-icon{width:42px;height:42px;margin-bottom:26px;color:var(--gold);}
+.service-title{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,25px);font-weight:400;margin-bottom:13px;}
+.service-desc{font-size:12px;line-height:2;color:var(--white-dim);margin-bottom:26px;}
+.service-tools{display:flex;flex-wrap:wrap;gap:7px;}
+.tool-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dim);border:1px solid rgba(201,168,76,.2);padding:3px 9px;transition:all .3s;}
+.service-card:hover .tool-tag{border-color:rgba(201,168,76,.5);color:var(--gold);}
+
+/* ─── ABOUT ──────────────────────────────────────────────── */
+.about-section{padding:clamp(80px,12vw,160px) 0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--black-border);}
+.about-left{padding:0 var(--pad);border-right:1px solid var(--black-border);display:flex;flex-direction:column;justify-content:center;}
+.about-right{padding:0 var(--pad);display:flex;flex-direction:column;justify-content:center;gap:34px;}
+.about-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.8vw,66px);font-weight:300;line-height:1.1;margin-bottom:38px;}
+.about-title em{font-style:italic;color:var(--gold);}
+.about-body{font-size:13px;line-height:2.2;color:var(--white-dim);margin-bottom:38px;}
+.about-signature{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.2vw,36px);font-weight:300;font-style:italic;color:var(--gold);opacity:.7;}
+.about-fact{display:flex;flex-direction:column;gap:7px;padding-bottom:22px;border-bottom:1px solid var(--black-border);}
+.about-fact:last-child{border-bottom:none;padding-bottom:0;}
+.about-fact-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.about-fact-value{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,1.8vw,21px);font-weight:300;color:var(--white);line-height:1.4;}
+
+/* ─── CONTACT ────────────────────────────────────────────── */
+.contact-section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--black-border);position:relative;overflow:hidden;}
+.contact-section::before{content:'';position:absolute;bottom:-180px;left:50%;transform:translateX(-50%);width:460px;height:460px;background:radial-gradient(circle,rgba(201,168,76,.06),transparent 70%);pointer-events:none;}
+.contact-inner{padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,110px);align-items:start;}
+.contact-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,7vw,100px);font-weight:300;line-height:.95;margin-bottom:16px;letter-spacing:-2px;}
+.contact-heading em{font-style:italic;color:var(--gold);}
+.contact-sub{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--white-dim);margin-bottom:52px;}
+.contact-info-item{display:flex;flex-direction:column;gap:5px;padding:18px 0;border-bottom:1px solid var(--black-border);}
+.contact-info-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.contact-info-value{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--white);}
+.contact-form{display:flex;flex-direction:column;gap:0;}
+.form-group{position:relative;border-bottom:1px solid var(--black-border);transition:border-color .3s;}
+.form-group:focus-within{border-color:var(--gold);}
+.form-group label{position:absolute;top:20px;left:0;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--white-dim);transition:all .3s;pointer-events:none;}
+.form-group input,.form-group textarea{width:100%;background:transparent;border:none;outline:none;padding:36px 0 16px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:300;color:var(--white);resize:none;-webkit-appearance:none;}
+.form-group textarea{min-height:108px;}
+.form-group input:focus+label,.form-group input:not(:placeholder-shown)+label,.form-group textarea:focus+label,.form-group textarea:not(:placeholder-shown)+label{top:8px;font-size:8px;color:var(--gold);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:transparent;}
+.form-submit{margin-top:40px;display:flex;justify-content:flex-end;}
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer{padding:clamp(30px,5vw,52px) var(--pad);border-top:1px solid var(--black-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,2.2vw,24px);letter-spacing:3px;color:var(--white);}
+.footer-logo span{color:var(--gold);}
+.footer-copy{font-size:10px;letter-spacing:2px;color:rgba(245,240,232,.2);text-align:center;}
+.footer-social{display:flex;gap:26px;}
+.footer-social a{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--white-dim);text-decoration:none;transition:color .3s;}
+.footer-social a:hover{color:var(--gold);}
+
+/* ─── SCROLL PROGRESS BAR ────────────────────────────────── */
+#scrollBar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--gold),var(--gold-light));z-index:9995;transform-origin:left;transform:scaleX(0);}
+
+/* ─── REVEAL ─────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s,transform .9s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.1s;}.reveal-d2{transition-delay:.2s;}.reveal-d3{transition-delay:.3s;}.reveal-d4{transition-delay:.4s;}
+
+/* ─── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1);transform-origin:top;}50%{opacity:.4;transform:scaleY(.5);transform-origin:top;}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes ambientPulse{0%{opacity:.7;transform:scale(1);}100%{opacity:1;transform:scale(1.04);}}
+@keyframes cornerGlow{0%{opacity:.5;transform:scale(.9);}100%{opacity:1;transform:scale(1.1);}}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}.marquee-track{animation:none;}}
+
+/* ─── LOW TIER ── html.fx-low (decidido una vez en JS): apagar lo más caro ── */
+html.fx-low body::before{display:none;} /* capa de ruido fija a pantalla completa */
+html.fx-low .hero-video-stage::before,
+html.fx-low .video-light-tl,
+html.fx-low .video-light-br{animation:none;} /* blur estático: sin re-rasterizado por frame */
+
+/* ─── PAUSAR ANIMACIONES DEL HERO FUERA DE PANTALLA ───── */
+body.hero-offscreen .particle,
+body.hero-offscreen .hero-video-stage::before,
+body.hero-offscreen .video-light-tl,
+body.hero-offscreen .video-light-br{animation-play-state:paused;}
+body.marquee-offscreen .marquee-track{animation-play-state:paused;}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  :root{--nav-h:60px;}
+  .nav-links{display:none;}.nav-burger{display:flex;}
+  .hero{align-items:flex-end;}
+  .hero-content{width:100%;padding:0 var(--pad) clamp(40px,7vw,64px);}
+  .hero-scroll{display:none;} /* en móvil/tablet el hero se alinea abajo y el indicador "Scroll" se solapaba con el CTA */
+  .hero-video-wrap{position:absolute;inset:0;width:100%;height:100%;right:0;top:0;transform:none;aspect-ratio:unset;opacity:.5;}
+  .hero-video-stage{transform:none !important;}
+  .hero-video-stage::before{filter:blur(14px);}.hero-video-stage::after{box-shadow:none;}
+  .video-light-tl,.video-light-br,.video-light-scan{display:none;}
+  .hero-video-wrap video,.hero-video-placeholder{-webkit-mask-image:radial-gradient(ellipse 110% 100% at 60% 50%,#000 0%,#000 28%,rgba(0,0,0,.65) 58%,transparent 100%);mask-image:radial-gradient(ellipse 110% 100% at 60% 50%,#000 0%,#000 28%,rgba(0,0,0,.65) 58%,transparent 100%);}
+  .video-blend{background:linear-gradient(to bottom,rgba(8,8,8,.2),rgba(8,8,8,.45) 55%,rgba(8,8,8,.88) 100%);}
+  /* Gama baja: sin máscara por fotograma de vídeo; .video-blend ya funde el vídeo con el fondo */
+  html.fx-low .hero-video-wrap video,html.fx-low .hero-video-placeholder{-webkit-mask-image:none;mask-image:none;}
+  .portfolio-grid{grid-template-columns:1fr;}
+  .portfolio-item{grid-column:1/-1 !important;grid-row:auto !important;aspect-ratio:16/9 !important;}
+  .services-grid{grid-template-columns:1fr;}
+  .about-section{grid-template-columns:1fr;}
+  .about-left{border-right:none;border-bottom:1px solid var(--black-border);padding-bottom:clamp(40px,6vw,60px);}
+  .contact-inner{grid-template-columns:1fr;gap:48px;}
+  .reel-stats{flex-direction:column;}
+  .reel-stat{border-right:none;border-bottom:1px solid var(--black-border);}
+  footer{flex-direction:column;text-align:center;}
+  .footer-social{justify-content:center;flex-wrap:wrap;}
+  .section-header{flex-direction:column;align-items:flex-start;gap:14px;}
+  /* Reel: zona de subida (solo reserva) apilada y desplazable en móvil para que no se salga */
+  .reel-placeholder{overflow-y:auto;}
+  .reel-placeholder-split{flex-direction:column;height:auto;min-height:100%;}
+  .reel-upload-divider{width:50%;height:1px;margin:6px 0;}
+  .reel-upload-zone,.luts-upload-container{padding:16px;}
+  .lut-upload-buttons{max-width:100%;}
+}
+@media(max-width:480px){
+  .hero-cta{gap:18px;}
+  .btn-primary{padding:12px 26px;}
+}
+@media(hover:none){
+  .portfolio-item{transform:none !important;box-shadow:0 4px 16px rgba(0,0,0,.4) !important;}
+  .portfolio-item-overlay{opacity:.85;}
+  .portfolio-item-number{opacity:.5;}
+  .portfolio-item-editbtn{opacity:.8;transform:none;}
+  .service-card:hover{background:transparent;}
+  .service-card::before{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">Jonathan Ponce de León</div>
+  <div class="loader-line-wrap"><div class="loader-line"></div></div>
+  <div class="loader-pct" id="loaderPct">Loading...</div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scrollBar"></div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">JP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#reel" data-i18n="nav.color">Color</a></li>
+    <li><a href="#work" data-i18n="nav.work">Work</a></li>
+    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langToggle" aria-label="Change language">
+      <span class="lang-opt active" data-lang="en">EN</span><span class="lang-sep">/</span><span class="lang-opt" data-lang="da">DA</span>
+    </button>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <a href="#reel" class="drawer-link" data-i18n="nav.color">Color</a>
+  <a href="#work" class="drawer-link" data-i18n="nav.work">Work</a>
+  <a href="#services" class="drawer-link" data-i18n="nav.services">Services</a>
+  <a href="#about" class="drawer-link" data-i18n="nav.about">About</a>
+  <a href="#contact" class="drawer-link" data-i18n="nav.contact">Contact</a>
+  <button class="lang-toggle nav-drawer-lang" id="langToggleDrawer" aria-label="Change language">
+    <span class="lang-opt active" data-lang="en">EN</span><span class="lang-sep">/</span><span class="lang-opt" data-lang="da">DA</span>
+  </button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div id="particles"></div>
+  <div class="hero-video-wrap">
+    <div class="hero-video-stage" id="heroVideoStage">
+      <div class="video-light-tl"></div><div class="video-light-br"></div><div class="video-light-scan"></div>
+      <div class="hero-video-placeholder mask-fade" id="heroPlaceholder">
+        <svg class="video-upload-icon" width="46" height="46" viewBox="0 0 52 52" fill="none" stroke="#C9A84C" stroke-width="1">
+          <rect x="4" y="12" width="44" height="32" rx="3"/>
+          <polygon points="20,22 20,34 34,28" fill="#C9A84C" stroke="none"/>
+          <line x1="26" y1="4" x2="26" y2="12"/><line x1="20" y1="4" x2="32" y2="4"/>
+        </svg>
+        <span class="video-upload-hint" data-i18n="hero.upload">Click to upload your cover video</span>
+        <input type="file" id="heroVideoInput" accept="video/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;z-index:10;">
+      </div>
+      <video id="heroVideo" class="mask-fade" autoplay muted loop playsinline style="display:none;"></video>
+      <div class="video-blend mask-fade"></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-i18n="hero.eyebrow">Videographer &amp; Editor · Sony FX6 · Randers, Denmark</p>
+    <h1 class="hero-title"><em>Jonathan</em><br><span class="line2">Ponce de León</span></h1>
+    <p class="hero-name-sub">Carballo</p>
+    <p class="hero-subtitle" data-i18n="hero.subtitle">I come from content creation — so I don't just shoot beautiful images, I understand what makes people watch</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary"><span data-i18n="hero.cta1">View work</span></a>
+      <a href="#contact" class="btn-ghost"><span data-i18n="hero.cta2">Get in touch</span><span class="arrow"></span></a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span data-i18n="hero.scroll">Scroll</span></div>
+</section>
+
+<!-- REEL -->
+<section class="reel-section" id="reel">
+  <div class="section-header reveal">
+    <div><div class="section-label" data-i18n="reel.label">Color grading</div><h2 class="section-title"><em data-i18n="reel.title1">Before</em><br><span data-i18n="reel.title2">&amp; After</span></h2></div>
+    <a href="#contact" class="btn-ghost"><span data-i18n="reel.available">Available for projects</span><span class="arrow"></span></a>
+  </div>
+  <div class="reel-player-wrap reveal">
+    <div class="reel-player" id="reelPlayer">
+      <!-- Placeholder (oculto cuando hay imágenes cargadas) -->
+      <div class="reel-placeholder" id="reelPlaceholder">
+        <div class="reel-placeholder-split">
+          <div class="reel-upload-zone" id="uploadZoneRaw">
+            <span class="reel-upload-badge">RAW</span>
+            <span class="reel-upload-zone-title" data-i18n="reel.rawtitle">Base image (RAW)</span>
+            <span class="reel-upload-zone-hint" id="hintRaw" data-i18n="reel.rawhint">Click to upload</span>
+            <input type="file" id="inputImageRaw" accept="image/*">
+          </div>
+          <div class="reel-upload-divider"></div>
+          <div class="reel-upload-zone luts-upload-container">
+            <span class="reel-upload-badge">COLOR GRADED (LUTs)</span>
+            <span class="reel-upload-zone-title" style="margin-bottom: clamp(6px, 1.2vw, 16px);" data-i18n="reel.luttitle">Choose and upload each LUT</span>
+            
+            <div class="lut-upload-buttons">
+              <div class="lut-upload-item">
+                <span class="lut-label">LUT 1</span>
+                <button class="lut-upload-btn-action" data-i18n="reel.upload" onclick="document.getElementById('inputLut1').click()">Upload</button>
+                <span class="lut-status" id="statusLut1" data-i18n="reel.pending">Pending</span>
+                <input type="file" id="inputLut1" accept="image/*" style="display:none;">
+              </div>
+              <div class="lut-upload-item">
+                <span class="lut-label">LUT 2</span>
+                <button class="lut-upload-btn-action" data-i18n="reel.upload" onclick="document.getElementById('inputLut2').click()">Upload</button>
+                <span class="lut-status" id="statusLut2" data-i18n="reel.pending">Pending</span>
+                <input type="file" id="inputLut2" accept="image/*" style="display:none;">
+              </div>
+              <div class="lut-upload-item">
+                <span class="lut-label">LUT 3</span>
+                <button class="lut-upload-btn-action" data-i18n="reel.upload" onclick="document.getElementById('inputLut3').click()">Upload</button>
+                <span class="lut-status" id="statusLut3" data-i18n="reel.pending">Pending</span>
+                <input type="file" id="inputLut3" accept="image/*" style="display:none;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Comparador de Imágenes Antes y Después con Múltiples LUTs -->
+      <div class="comparison-slider" id="comparisonSlider">
+        <!-- Selector de LUTs flotante de alta gama -->
+        <div class="lut-selector-container" id="lutSelectorContainer">
+          <!-- Los nombres de las LUTs los pone el JS desde LUT_NAMES (fuente única) -->
+          <button class="lut-select-btn active" data-lut="1" id="btnSelectLut1" style="display:none;"></button>
+          <button class="lut-select-btn" data-lut="2" id="btnSelectLut2" style="display:none;"></button>
+          <button class="lut-select-btn" data-lut="3" id="btnSelectLut3" style="display:none;"></button>
+        </div>
+
+        <div class="video-panel video-raw">
+          <img id="imgRaw" alt="Imagen RAW Base" style="width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;">
+          <video id="vidRaw" muted loop playsinline preload="none" style="display:none;pointer-events:none;"></video>
+          <div class="video-label left-label">RAW</div>
+        </div>
+        <div class="video-panel video-graded" id="gradedPanel">
+          <img id="imgGraded" alt="Imagen Graded" style="width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;transition:opacity 0.25s ease;">
+          <video id="vidGraded" muted loop playsinline preload="none" style="display:none;pointer-events:none;"></video>
+          <div class="video-label right-label" id="gradedLabel">COLOR GRADED</div>
+        </div>
+        <div class="slider-divider" id="sliderDivider">
+          <div class="slider-handle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="8 18 2 12 8 6"></polyline>
+              <polyline points="16 6 22 12 16 18"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Botón discreto flotante para resetear imágenes -->
+      <button class="reel-reset-btn" id="reelResetBtn" data-i18n="reel.change">+ Change images</button>
+    </div>
+  </div>
+  <div class="reel-stats">
+    <div class="reel-stat"><div class="reel-stat-number">Sony FX6</div><div class="reel-stat-label" data-i18n="fact.camera">Camera &amp; kit</div></div>
+    <div class="reel-stat"><div class="reel-stat-number">DaVinci</div><div class="reel-stat-label" data-i18n="fact.software">Color &amp; edit</div></div>
+    <div class="reel-stat"><div class="reel-stat-number">ES · EN · DA</div><div class="reel-stat-label" data-i18n="fact.langs">Languages (DA in progress)</div></div>
+    <div class="reel-stat"><div class="reel-stat-number">Randers</div><div class="reel-stat-label" data-i18n="fact.base">Based in Jutland</div></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section" id="work">
+  <div class="section-header reveal">
+    <div><div class="section-label" data-i18n="work.label">Work</div><h2 class="section-title" data-i18n="work.title">Personal<br><em>Projects</em></h2></div>
+  </div>
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item reveal" data-index="0">
+      <div class="portfolio-item-inner">
+        <div class="portfolio-item-bg bg1"></div>
+        <video class="portfolio-item-video" id="pv0" preload="none" muted loop playsinline></video>
+        <div class="portfolio-item-overlay"><div>
+          <div class="portfolio-item-category" data-i18n="work.p1cat">Personal project</div>
+          <div class="portfolio-item-title">Randers · Hygge</div>
+          <div class="portfolio-item-tags"><span class="tag">Sony FX6</span><span class="tag">DaVinci Resolve</span></div>
+        </div></div>
+      </div>
+      <button class="portfolio-item-editbtn" onclick="triggerPV(0)">+ Video</button>
+      <div class="portfolio-item-number">01</div>
+      <input type="file" id="pi0" accept="video/*" style="display:none;">
+    </div>
+
+    <div class="portfolio-item reveal reveal-d1" data-index="1">
+      <div class="portfolio-item-inner">
+        <div class="portfolio-item-bg bg2"></div>
+        <video class="portfolio-item-video" id="pv1" preload="none" muted loop playsinline></video>
+        <div class="portfolio-item-overlay"><div>
+          <div class="portfolio-item-category" data-i18n="work.p2cat">Personal mini-doc</div>
+          <div class="portfolio-item-title">The Local Baker</div>
+          <div class="portfolio-item-tags"><span class="tag" data-i18n="tag.doc">Documentary</span><span class="tag">Sony FX6</span></div>
+        </div></div>
+      </div>
+      <button class="portfolio-item-editbtn" onclick="triggerPV(1)">+ Video</button>
+      <div class="portfolio-item-number">02</div>
+      <input type="file" id="pi1" accept="video/*" style="display:none;">
+    </div>
+
+    <div class="portfolio-item reveal reveal-d2" data-index="2">
+      <div class="portfolio-item-inner">
+        <div class="portfolio-item-bg bg3"></div>
+        <video class="portfolio-item-video" id="pv2" preload="none" muted loop playsinline></video>
+        <div class="portfolio-item-overlay"><div>
+          <div class="portfolio-item-category" data-i18n="work.p3cat">Spec commercial</div>
+          <div class="portfolio-item-title">Corner Café</div>
+          <div class="portfolio-item-tags"><span class="tag" data-i18n="tag.commercial">Commercial</span><span class="tag">Sony FX6</span></div>
+        </div></div>
+      </div>
+      <button class="portfolio-item-editbtn" onclick="triggerPV(2)">+ Video</button>
+      <div class="portfolio-item-number">03</div>
+      <input type="file" id="pi2" accept="video/*" style="display:none;">
+    </div>
+
+    <div class="portfolio-item reveal reveal-d3" data-index="3">
+      <div class="portfolio-item-inner">
+        <div class="portfolio-item-bg bg4"></div>
+        <video class="portfolio-item-video" id="pv3" preload="none" muted loop playsinline></video>
+        <div class="portfolio-item-overlay"><div>
+          <div class="portfolio-item-category" data-i18n="work.p4cat">Personal project</div>
+          <div class="portfolio-item-title">Jutland Light</div>
+          <div class="portfolio-item-tags"><span class="tag" data-i18n="tag.landscape">Landscape</span><span class="tag">DaVinci Resolve</span></div>
+        </div></div>
+      </div>
+      <button class="portfolio-item-editbtn" onclick="triggerPV(3)">+ Video</button>
+      <div class="portfolio-item-number">04</div>
+      <input type="file" id="pi3" accept="video/*" style="display:none;">
+    </div>
+
+    <div class="portfolio-item reveal reveal-d4" data-index="4">
+      <div class="portfolio-item-inner">
+        <div class="portfolio-item-bg bg5"></div>
+        <video class="portfolio-item-video" id="pv4" preload="none" muted loop playsinline></video>
+        <div class="portfolio-item-overlay"><div>
+          <div class="portfolio-item-category" data-i18n="work.p5cat">Personal project</div>
+          <div class="portfolio-item-title">Portrait Study</div>
+          <div class="portfolio-item-tags"><span class="tag" data-i18n="tag.portrait">Portrait</span><span class="tag">Sony FX6</span></div>
+        </div></div>
+      </div>
+      <button class="portfolio-item-editbtn" onclick="triggerPV(4)">+ Video</button>
+      <div class="portfolio-item-number">05</div>
+      <input type="file" id="pi4" accept="video/*" style="display:none;">
+    </div>
+
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-text">Videography</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Video Editing</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Sony FX6</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Color Grading</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">DaVinci Resolve</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Short-form Content</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Randers · Denmark</span><span class="marquee-dot"></span></div>
+    <!-- La segunda tanda (necesaria para el bucle infinito) la clona el JS: una sola fuente que editar -->
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-header reveal">
+    <div><div class="section-label" data-i18n="serv.label">Services</div><h2 class="section-title" data-i18n="serv.title">What I<br><em>do</em></h2></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-number">01</div><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><rect x="4" y="12" width="30" height="24" rx="2"/><polygon points="34,20 44,14 44,34 34,28" fill="currentColor" stroke="none"/></svg><h3 class="service-title" data-i18n="serv.1t">Videography</h3><p class="service-desc" data-i18n="serv.1d">I shoot clean, cinematic footage with a Sony FX6 — from interviews and events to brand and social content. Camera, lighting and sound handled by one person.</p><div class="service-tools"><span class="tool-tag">Sony FX6</span><span class="tool-tag" data-i18n="serv.tool.light">Lighting</span><span class="tool-tag" data-i18n="serv.tool.audio">Audio</span></div></div>
+    <div class="service-card reveal reveal-d1"><div class="service-number">02</div><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><rect x="4" y="12" width="40" height="28" rx="2"/><line x1="14" y1="4" x2="14" y2="12"/><line x1="34" y1="4" x2="34" y2="12"/><line x1="4" y1="22" x2="44" y2="22"/><polygon points="18,28 18,36 32,32" fill="currentColor" stroke="none"/></svg><h3 class="service-title" data-i18n="serv.2t">Video Editing</h3><p class="service-desc" data-i18n="serv.2d">I build the story in the edit — pacing, rhythm and sound so every cut has a reason. From long-form pieces to fast, scroll-stopping social edits.</p><div class="service-tools"><span class="tool-tag">DaVinci Resolve</span><span class="tool-tag">Premiere Pro</span></div></div>
+    <div class="service-card reveal reveal-d2"><div class="service-number">03</div><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8"/><line x1="24" y1="6" x2="24" y2="14"/><line x1="24" y1="34" x2="24" y2="42"/><line x1="6" y1="24" x2="14" y2="24"/><line x1="34" y1="24" x2="42" y2="24"/></svg><h3 class="service-title" data-i18n="serv.3t">Color Grading</h3><p class="service-desc" data-i18n="serv.3d">I grade in DaVinci Resolve to give footage a consistent, intentional look — matching shots, setting mood and building a visual signature for the project.</p><div class="service-tools"><span class="tool-tag">DaVinci Resolve</span><span class="tool-tag">LUTs</span></div></div>
+    <div class="service-card reveal"><div class="service-number">04</div><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><rect x="14" y="4" width="20" height="40" rx="3"/><line x1="14" y1="36" x2="34" y2="36"/><circle cx="24" cy="40" r="1.5" fill="currentColor"/></svg><h3 class="service-title" data-i18n="serv.4t">Short-form Content</h3><p class="service-desc" data-i18n="serv.4d">I come from content creation, so I don't just film — I know what makes people stop and watch. Reels and short-form built to actually perform, not just look good.</p><div class="service-tools"><span class="tool-tag" data-i18n="serv.tool.reels">Reels</span><span class="tool-tag" data-i18n="serv.tool.shortform">Short-form</span><span class="tool-tag" data-i18n="serv.tool.strategy">Strategy</span></div></div>
+    <div class="service-card reveal reveal-d1"><div class="service-number">05</div><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M8 40L8 20L24 8L40 20L40 40"/><rect x="18" y="28" width="12" height="12"/><path d="M16 20L24 14L32 20"/></svg><h3 class="service-title" data-i18n="serv.5t">Local Business Video</h3><p class="service-desc" data-i18n="serv.5d">Simple, honest video for local businesses in Randers and Jutland — a café, a shop, a service. One clip that shows what you do and why people should care.</p><div class="service-tools"><span class="tool-tag" data-i18n="serv.tool.promo">Promo</span><span class="tool-tag" data-i18n="serv.tool.social">Social</span><span class="tool-tag" data-i18n="serv.tool.local">Local</span></div></div>
+    <div class="service-card reveal reveal-d2"><div class="service-number">06</div><svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="24" r="20"/><path d="M24 4A20 20 0 0 1 44 24" stroke-dasharray="4 2"/><line x1="24" y1="14" x2="24" y2="24" stroke-width="1.5"/><line x1="24" y1="24" x2="34" y2="28" stroke-width="1.5"/><circle cx="24" cy="24" r="2" fill="currentColor"/></svg><h3 class="service-title" data-i18n="serv.6t">Content Strategy</h3><p class="service-desc" data-i18n="serv.6d">Before the camera rolls, I help figure out what to make and why. I've grown and monetized an audience from scratch, so I think about the goal, not just the shot.</p><div class="service-tools"><span class="tool-tag" data-i18n="serv.tool.planning">Planning</span><span class="tool-tag" data-i18n="serv.tool.growth">Growth</span></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-left reveal">
+    <div class="section-label" style="margin-bottom:42px;" data-i18n="about.label">About</div>
+    <h2 class="about-title" data-i18n="about.title">I don't just<br>shoot images —<br>I know what<br>makes people <em>watch</em></h2>
+    <p class="about-body" data-i18n="about.body">I come from content creation. Before I picked up the FX6, I grew a niche account from 300 to 3,000 followers organically and turned that attention into real income — so I think about the goal of a video, not just how it looks.<br><br>Now based in Randers, I shoot and edit my own work: camera, lighting, sound and color grading in DaVinci Resolve. My portfolio is young and honest — personal and spec projects for now — and it grows with every real shoot. I'm learning Danish and open to collaborating across Jutland.</p>
+    <div class="about-signature">Jonathan Ponce de León</div>
+  </div>
+  <div class="about-right reveal reveal-d2">
+    <div class="about-fact"><span class="about-fact-label" data-i18n="about.f1l">Camera &amp; kit</span><span class="about-fact-value" data-i18n="about.f1v">Sony FX6 · lighting · audio</span></div>
+    <div class="about-fact"><span class="about-fact-label" data-i18n="about.f2l">Software</span><span class="about-fact-value" data-i18n="about.f2v">DaVinci Resolve · Premiere Pro</span></div>
+    <div class="about-fact"><span class="about-fact-label" data-i18n="about.f3l">Strengths</span><span class="about-fact-value" data-i18n="about.f3v">Videography · editing · color · short-form content</span></div>
+    <div class="about-fact"><span class="about-fact-label" data-i18n="about.f4l">Languages</span><span class="about-fact-value" data-i18n="about.f4v">Spanish (native) · English (fluent) · Danish (learning)</span></div>
+    <div class="about-fact"><span class="about-fact-label" data-i18n="about.f5l">Based in</span><span class="about-fact-value" data-i18n="about.f5v">Randers, Denmark · Jutland &amp; remote</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <h2 class="contact-heading"><em data-i18n="contact.heading">Let's talk.</em></h2>
+      <p class="contact-sub" data-i18n="contact.sub">Open to new projects</p>
+      <div class="contact-info">
+        <a class="contact-info-item" href="mailto:lunfilmstudio@gmail.com" style="text-decoration:none;"><span class="contact-info-label">Email</span><span class="contact-info-value">lunfilmstudio@gmail.com</span></a>
+        <div class="contact-info-item"><span class="contact-info-label" data-i18n="contact.availlabel">Availability</span><span class="contact-info-value" data-i18n="contact.availvalue">Available now · freelance</span></div>
+        <div class="contact-info-item"><span class="contact-info-label" data-i18n="contact.loclabel">Location</span><span class="contact-info-value" data-i18n="contact.locvalue">Randers, Denmark · Jutland &amp; remote</span></div>
+        <div class="contact-info-item"><span class="contact-info-label" data-i18n="contact.langlabel">Languages</span><span class="contact-info-value">ES · EN · DA</span></div>
+      </div>
+    </div>
+    <div class="contact-form reveal reveal-d2">
+      <div class="form-group"><input type="text" id="fname" placeholder=" " autocomplete="name"><label for="fname" data-i18n="form.name">Full name</label></div>
+      <div class="form-group"><input type="email" id="femail" placeholder=" " autocomplete="email"><label for="femail">Email</label></div>
+      <div class="form-group"><input type="text" id="fproject" placeholder=" "><label for="fproject" data-i18n="form.project">Project type</label></div>
+      <div class="form-group"><textarea id="fmsg" rows="4" placeholder=" "></textarea><label for="fmsg" data-i18n="form.msg">Tell me about your project</label></div>
+      <div class="form-submit"><button class="btn-primary" type="button" id="sendBtn"><span data-i18n="form.send">Send message</span></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">JONATHAN PONCE DE LEÓN<span>.</span></div>
+  <div class="footer-copy">© 2026 Jonathan Ponce de León Carballo · Randers, Denmark</div>
+  <div class="footer-social"><a href="mailto:lunfilmstudio@gmail.com">lunfilmstudio@gmail.com</a></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const isMobile=window.matchMedia('(hover:none)').matches;
+const noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* Tier de capacidad del dispositivo: UNA decisión central que gatea todos los
+   efectos caros (CSS vía html.fx-low, JS vía lowTier). hover:none no detecta
+   un escritorio viejo con ratón; deviceMemory/hardwareConcurrency sí.
+   ?fx=low / ?fx=high en la URL fuerza el modo (para poder testear los dos). */
+const fxForce=new URLSearchParams(location.search).get('fx');
+const lowTier=fxForce?fxForce==='low':((navigator.deviceMemory&&navigator.deviceMemory<=4)
+  ||(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=4)
+  ||!!(navigator.connection&&navigator.connection.saveData));
+document.documentElement.classList.add(lowTier?'fx-low':'fx-high');
+
+/* Red de seguridad: deviceMemory/hardwareConcurrency no ven un equipo viejo con
+   muchos núcleos lentos, y Lighthouse/DevTools simulan gama baja estrangulando
+   la CPU SIN cambiar esos valores (la página se cree fx-high). Si los primeros
+   segundos van sostenidamente por debajo de ~30fps, degradar a fx-low en vivo. */
+const demoteFns=[];
+let demoted=false;
+function demoteToLow(){
+  if(demoted)return;demoted=true;
+  document.documentElement.classList.replace('fx-high','fx-low');
+  demoteFns.forEach(f=>f());
+}
+if(!lowTier&&fxForce!=='high'){
+  let longFrames=0;const watchT0=performance.now();let lastT=watchT0;
+  (function watch(){
+    requestAnimationFrame(t=>{
+      const dt=t-lastT;lastT=t;
+      if(dt>34&&dt<250)longFrames++; // >2 vsync = <30fps; saltos enormes = pestaña en 2º plano, no cuentan
+      if(longFrames>=20){demoteToLow();return;}
+      if(t-watchT0<5000)watch();
+    });
+  })();
+}
+
+/* ── LOADER ─────────────────────────────────────────── */
+const loader=document.getElementById('loader');
+let loaderDone=false;
+function dismissLoader(){
+  if(loaderDone)return;
+  loaderDone=true;
+  loader.classList.add('done');
+  startHeroVideo(); // el vídeo de portada empieza a bajar cuando deja de estar tapado por el loader
+}
+window.addEventListener('load',()=>setTimeout(dismissLoader,400));
+// Fallback — ocultar el loader tras 2.5s aunque no haya disparado load
+setTimeout(dismissLoader,2500);
+
+/* ── SCROLL: un único listener + rAF para todas las tareas ── */
+const scrollTasks=[];
+let scrollRAF=null;
+function runScrollTasks(){
+  const y=window.scrollY;
+  for(let i=0;i<scrollTasks.length;i++)scrollTasks[i](y);
+  scrollRAF=null;
+}
+window.addEventListener('scroll',()=>{
+  if(scrollRAF===null)scrollRAF=requestAnimationFrame(runScrollTasks);
+},{passive:true});
+
+/* ── SCROLL PROGRESS BAR ─────────────────────────────── */
+const scrollBar=document.getElementById('scrollBar');
+let scrollRange=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+function recomputeScrollRange(){
+  scrollRange=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+}
+window.addEventListener('resize',recomputeScrollRange,{passive:true});
+window.addEventListener('load',recomputeScrollRange);
+scrollTasks.push(y=>{
+  scrollBar.style.transform=`scaleX(${(y/scrollRange).toFixed(4)})`;
+});
+
+/* ── CURSOR ──────────────────────────────────────────── */
+if(!isMobile){
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0,ringRAF=null;
+  function ringLoop(){
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    ring.style.transform=`translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`; // transform: solo compositor, sin layout
+    if(Math.abs(mx-rx)>.1||Math.abs(my-ry)>.1)ringRAF=requestAnimationFrame(ringLoop);
+    else ringRAF=null;
+  }
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.transform=`translate3d(${mx}px,${my}px,0) translate(-50%,-50%)`;
+    if(ringRAF===null)ringRAF=requestAnimationFrame(ringLoop);
+  },{passive:true});
+  document.addEventListener('mousedown',()=>ring.classList.add('click'));
+  document.addEventListener('mouseup',()=>ring.classList.remove('click'));
+  document.querySelectorAll('a,button,.portfolio-item,.service-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
+  });
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+const nav=document.getElementById('mainNav');
+const burger=document.getElementById('navBurger');
+const drawer=document.getElementById('navDrawer');
+let lastY=0,navHidden=false;
+scrollTasks.push(y=>{
+  nav.classList.toggle('scrolled',y>60);
+  if(isMobile){
+    if(y>lastY+10&&y>120&&!navHidden){nav.classList.add('hidden');navHidden=true;}
+    else if(y<lastY-10&&navHidden){nav.classList.remove('hidden');navHidden=false;}
+  }
+  lastY=y;
+});
+function toggleDrawer(open){
+  drawer.style.display=open?'flex':'none';
+  requestAnimationFrame(()=>drawer.classList.toggle('open',open));
+  burger.classList.toggle('open',open);
+  drawer.setAttribute('aria-hidden',String(!open));
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>toggleDrawer(!burger.classList.contains('open')));
+drawer.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click',()=>toggleDrawer(false)));
+
+/* ── HERO VIDEO ──────────────────────────────────────── */
+const heroInput=document.getElementById('heroVideoInput');
+const heroVid=document.getElementById('heroVideo');
+const heroPh=document.getElementById('heroPlaceholder');
+let heroUrl=null;
+heroInput.addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  heroVid.removeEventListener('error',heroAttempt); // un error del blob no debe re-disparar el fallback y borrar el src del usuario
+  if(heroUrl)URL.revokeObjectURL(heroUrl);
+  heroUrl=URL.createObjectURL(f);
+  heroVid.src=heroUrl;
+  heroVid.style.display='block';heroPh.style.display='none';
+  heroVid.play().catch(()=>{});
+});
+/* Carga automática del vídeo de portada fijo — DIFERIDA hasta que el loader se
+   oculta (dismissLoader): antes de eso el vídeo no se ve y su descarga solo
+   compite con fuentes/render en el arranque.
+   → Pon tu archivo en:  videos/portada.mp4
+   → OPCIONAL: videos/portada-movil.mp4 (versión ligera, ~720p) para pantallas
+     pequeñas; si no existe, se usa portada.mp4 como siempre.
+   Si no existe ninguno, se mantiene la zona para subir (solo la ves tú). */
+let heroTryList=[],heroK=0,heroStarted=false;
+function heroAttempt(){
+  if(heroK>=heroTryList.length){
+    heroVid.removeEventListener('error',heroAttempt); // lista agotada: sin listener colgado
+    heroVid.removeAttribute('src');
+    return;
+  }
+  heroVid.src=heroTryList[heroK++];
+}
+function startHeroVideo(){
+  if(heroStarted||heroUrl)return;
+  heroStarted=true;
+  heroTryList=window.matchMedia('(max-width:768px)').matches
+    ?['videos/portada-movil.mp4','videos/portada.mp4']
+    :['videos/portada.mp4'];
+  heroVid.addEventListener('loadeddata',()=>{
+    heroVid.removeEventListener('error',heroAttempt);
+    heroVid.style.display='block';heroPh.style.display='none';
+    heroVid.play().catch(()=>{});
+  },{once:true});
+  heroVid.addEventListener('error',heroAttempt);
+  heroAttempt();
+}
+
+/* ── HERO 3D TILT ────────────────────────────────────── */
+if(!isMobile&&!noMotion&&!lowTier){
+  const hs=document.querySelector('.hero');
+  const st=document.getElementById('heroVideoStage');
+  let tRY=-1.5,tRX=.5,cRY=-1.5,cRX=.5,tiltRAF=null,tiltDead=false;
+  demoteFns.push(()=>{tiltDead=true;st.style.transform='';});
+  // Dimensiones cacheadas: el hero empieza en el top del documento, así que no
+  // hace falta getBoundingClientRect en cada mousemove (forzaba layout por evento)
+  let heroW=hs.offsetWidth,heroH=hs.offsetHeight;
+  window.addEventListener('resize',()=>{heroW=hs.offsetWidth;heroH=hs.offsetHeight;},{passive:true});
+  function tilt(){
+    if(tiltDead){tiltRAF=null;return;}
+    cRY+=(tRY-cRY)*.05;cRX+=(tRX-cRX)*.05;
+    st.style.transform=`rotateY(${cRY.toFixed(3)}deg) rotateX(${cRX.toFixed(3)}deg)`;
+    if(Math.abs(tRY-cRY)>.001||Math.abs(tRX-cRX)>.001)tiltRAF=requestAnimationFrame(tilt);
+    else tiltRAF=null;
+  }
+  function startTilt(){ if(!tiltDead&&tiltRAF===null)tiltRAF=requestAnimationFrame(tilt); }
+  hs.addEventListener('mousemove',e=>{
+    tRY=-1.5+(e.clientX-heroW/2)/(heroW/2)*1.5;
+    tRX=.5-(e.clientY+window.scrollY-heroH/2)/(heroH/2)*1.0;
+    startTilt();
+  },{passive:true});
+  hs.addEventListener('mouseleave',()=>{tRY=-1.5;tRX=.5;startTilt();});
+}
+
+/* ── PARALLAX suave — toda la página ─────────────────── */
+if(!noMotion&&!isMobile){
+  const hc  = document.querySelector('.hero-content');
+  const hBg = document.querySelector('.hero-bg');
+  const hVW = document.querySelector('.hero-video-wrap');
+
+  // Capas de sección — velocidades muy bajas para efecto imperceptible pero premium.
+  // En gama baja no se activan (el parallax del hero, 3 escrituras baratas, se mantiene).
+  const layers=[];
+  if(!lowTier){
+    document.querySelectorAll('.section-title').forEach(el=>layers.push({el,speed:0.022}));
+    document.querySelectorAll('.section-label').forEach(el=>layers.push({el,speed:0.014}));
+
+    const abtL=document.querySelector('.about-left');
+    const abtR=document.querySelector('.about-right');
+    if(abtL) layers.push({el:abtL, speed: 0.032});
+    if(abtR) layers.push({el:abtR, speed:-0.022});
+
+    const reelWrap=document.querySelector('.reel-player-wrap');
+    if(reelWrap) layers.push({el:reelWrap, speed:0.025});
+
+    const cntH=document.querySelector('.contact-heading');
+    if(cntH) layers.push({el:cntH, speed:0.028});
+  }
+  layers.forEach(L=>{L.rev=L.el.closest('.reveal');L.off=0;});
+  const layerSet=new Set(layers.map(L=>L.el));
+  demoteFns.push(()=>{ // degradado en caliente: fuera capas de sección (el parallax del hero, barato, se queda)
+    for(let i=0;i<layers.length;i++)layers[i].el.style.transform='';
+    layers.length=0;
+  });
+
+  // Activar capas de sección solo tras completar su reveal
+  const revealDone = new WeakSet();
+  document.querySelectorAll('.reveal').forEach(el=>{
+    el.addEventListener('transitionend',e=>{
+      if(e.propertyName==='transform'&&el.classList.contains('visible')){
+        revealDone.add(el);
+        // Si la propia capa es .reveal, su transition:transform .9s re-interpolaría
+        // cada escritura del parallax: una vez revelada, fuera transición.
+        if(layerSet.has(el))el.style.transition='none';
+        recalcLayerOffsets();
+      }
+    });
+  });
+
+  // Offsets de documento cacheados (init/reveal/resize/load):
+  // cero getBoundingClientRect por frame de scroll.
+  function recalcLayerOffsets(){
+    const sy=window.scrollY;
+    for(let i=0;i<layers.length;i++){
+      const L=layers[i],r=L.el.getBoundingClientRect();
+      L.top=r.top+sy-L.off; // descuenta el translate ya aplicado
+      L.h=r.height;
+    }
+  }
+  window.addEventListener('resize',recalcLayerOffsets,{passive:true});
+  window.addEventListener('load',recalcLayerOffsets);
+
+  function updateParallax(sy){
+    if(typeof sy!=='number') sy=window.scrollY;
+    const vh=window.innerHeight;
+    const cap=Math.min(sy,vh);
+
+    // Secciones — solo escrituras; la posición se deriva de los offsets cacheados
+    for(let i=0;i<layers.length;i++){
+      const L=layers[i],top=L.top-sy;
+      if(top+L.h<-150||top>vh+150||(L.rev&&!revealDone.has(L.rev)))continue;
+      L.off=(top+L.h*.5-vh*.5)*L.speed;
+      L.el.style.transform=`translateY(${L.off.toFixed(2)}px)`;
+    }
+
+    // Hero: 3 planos de profundidad (bg lento → video medio → texto rápido)
+    if(sy<vh){
+      hc.style.transform=`translateY(${(sy*.20).toFixed(1)}px)`;
+      hc.style.opacity=String(Math.max(0,1-sy/vh*1.4));
+    }
+    if(hBg) hBg.style.transform=`translateY(${(cap*.04).toFixed(2)}px)`;
+    if(hVW) hVW.style.transform=`translateY(calc(-50% + ${(cap*.11).toFixed(2)}px))`;
+  }
+
+  recalcLayerOffsets();
+  scrollTasks.push(updateParallax);
+  updateParallax(window.scrollY);
+}
+
+/* ── PARTICLES ───────────────────────────────────────── */
+if(!noMotion){
+  const pc=document.getElementById('particles');
+  const n=lowTier?6:(isMobile?10:28); // menos capas animadas donde no hay GPU que las pague
+  const fr=document.createDocumentFragment();
+  for(let i=0;i<n;i++){
+    const p=document.createElement('div');p.className='particle';
+    const s=(Math.random()*2+1).toFixed(1)+'px';
+    p.style.cssText=`left:${(Math.random()*100).toFixed(1)}%;top:${(Math.random()*100).toFixed(1)}%;width:${s};height:${s};--dur:${(Math.random()*6+4).toFixed(1)}s;--delay:${(Math.random()*7).toFixed(1)}s;--vx:${((Math.random()-.5)*170).toFixed(0)};--vy:${(-(Math.random()*260+80)).toFixed(0)}`;
+    fr.appendChild(p);
+  }
+  pc.appendChild(fr);
+  demoteFns.push(()=>{while(pc.children.length>6)pc.removeChild(pc.lastChild);});
+}
+
+/* ── PAUSAR ANIMACIONES DEL HERO FUERA DE PANTALLA ──── */
+const heroSection=document.querySelector('.hero');
+if(heroSection&&'IntersectionObserver'in window){
+  new IntersectionObserver(es=>{
+    const off=!es[0].isIntersecting;
+    document.body.classList.toggle('hero-offscreen',off);
+    // Pausar también el vídeo de portada cuando no se ve (decode = CPU)
+    if(heroVid.getAttribute('src')){
+      if(off)heroVid.pause();
+      else heroVid.play().catch(()=>{});
+    }
+  },{threshold:0}).observe(heroSection);
+}
+// Duplicar el contenido del marquee una vez (la animación translateX(-50%)
+// necesita el contenido exactamente 2x; el HTML solo lleva una tanda que editar)
+const marqueeTrack=document.querySelector('.marquee-track');
+if(marqueeTrack)Array.from(marqueeTrack.children).forEach(el=>marqueeTrack.appendChild(el.cloneNode(true)));
+// Pausar la animación del marquee cuando no está en pantalla
+const marqueeSection=document.querySelector('.marquee-section');
+if(marqueeSection&&'IntersectionObserver'in window){
+  new IntersectionObserver(es=>{
+    document.body.classList.toggle('marquee-offscreen',!es[0].isIntersecting);
+  },{threshold:0}).observe(marqueeSection);
+}
+
+/* ── REEL IMAGES — COMPARADOR ANTES/DESPUÉS CON MULTIPLES LUTS ── */
+const imgRaw = document.getElementById('imgRaw');
+const imgGraded = document.getElementById('imgGraded');
+const inputImageRaw = document.getElementById('inputImageRaw');
+const uploadZoneRaw = document.getElementById('uploadZoneRaw');
+const hintRaw = document.getElementById('hintRaw');
+const comparisonSlider = document.getElementById('comparisonSlider');
+const reelPh = document.getElementById('reelPlaceholder');
+const reelResetBtn = document.getElementById('reelResetBtn');
+
+let rawUrl = null;
+const lutUrls = {
+  1: null,
+  2: null,
+  3: null
+};
+let activeLutIndex = null;
+
+/* Fuente única de las LUTs: nombres y referencias DOM cacheadas una vez
+   (antes: nombres por triplicado en HTML/JS y 5 bucles getElementById repetidos) */
+const LUT_NAMES = { 1: 'Teal & Orange', 2: 'Cine Gold', 3: 'Vintage Film' };
+const lutRefs = {};
+Object.keys(LUT_NAMES).forEach(k => {
+  const id = +k;
+  const status = document.getElementById(`statusLut${id}`);
+  const item = status ? status.closest('.lut-upload-item') : null;
+  lutRefs[id] = {
+    input: document.getElementById(`inputLut${id}`),
+    btn: document.getElementById(`btnSelectLut${id}`),
+    status, item,
+    label: item ? item.querySelector('.lut-label') : null
+  };
+  if (lutRefs[id].btn) lutRefs[id].btn.textContent = LUT_NAMES[id];
+  if (lutRefs[id].label) lutRefs[id].label.textContent = `LUT ${id}: ${LUT_NAMES[id]}`;
+});
+function forEachLut(fn) { Object.keys(lutRefs).forEach(k => fn(+k, lutRefs[+k])); }
+
+// Texto de UI según idioma actual — una sola fuente de verdad: el diccionario I18N
+function t(key) { return (I18N[window.CURRENT_LANG] || I18N.en)[key]; }
+
+// Re-aplica los estados dinámicos ('Loaded') que el barrido data-i18n de applyLang machaca
+function syncReelStatus() {
+  if (rawUrl) hintRaw.textContent = t('reel.loaded');
+  forEachLut((id, r) => {
+    if (lutUrls[id] && r.status) r.status.textContent = t('reel.loaded');
+  });
+}
+
+function checkAndInitReel() {
+  const hasAtLeastOneLut = lutUrls[1] || lutUrls[2] || lutUrls[3];
+  if (rawUrl && hasAtLeastOneLut) {
+    if (!activeLutIndex || !lutUrls[activeLutIndex]) {
+      const firstAvailable = Object.keys(LUT_NAMES).map(Number).find(i => lutUrls[i]);
+      if (firstAvailable) setActiveLut(firstAvailable);
+    }
+    
+    reelPh.style.display = 'none';
+    comparisonSlider.classList.add('active');
+    reelResetBtn.classList.add('active');
+  }
+}
+
+let lutFadeTimer = null;
+// onload/onerror ANTES de tocar src, y restaurar opacidad también con imagen cacheada (complete)
+function setGradedSrc(url) {
+  imgGraded.onload = () => { imgGraded.style.opacity = '1'; };
+  imgGraded.onerror = () => { imgGraded.style.opacity = '1'; };
+  imgGraded.src = url;
+  if (imgGraded.complete) imgGraded.style.opacity = '1';
+}
+
+function setActiveLut(index) {
+  if (!lutUrls[index]) return;
+  if (activeLutIndex === index && imgGraded.getAttribute('src') === lutUrls[index]) return; // ya activa: no re-disparar el fade
+  activeLutIndex = index;
+
+  // Actualizar estado activo de las pestañas
+  forEachLut((id, r) => {
+    if (r.btn) r.btn.classList.toggle('active', id === index);
+  });
+
+  // Transición suave de la imagen gradada — un solo timer: clicks rápidos no se pisan
+  imgGraded.style.opacity = '0';
+  clearTimeout(lutFadeTimer);
+  lutFadeTimer = setTimeout(() => setGradedSrc(lutUrls[index]), 150);
+  
+  // Actualizar etiqueta del texto de la LUT
+  const labelEl = document.getElementById('gradedLabel');
+  if (labelEl) labelEl.textContent = LUT_NAMES[index] || 'COLOR GRADED';
+}
+
+// Carga de la imagen RAW original
+inputImageRaw.addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (f) {
+    if (rawUrl) URL.revokeObjectURL(rawUrl);
+    rawUrl = URL.createObjectURL(f);
+    imgRaw.src = rawUrl;
+    uploadZoneRaw.classList.add('loaded');
+    hintRaw.textContent = t('reel.loaded');
+    checkAndInitReel();
+  }
+});
+
+// Carga de las variantes LUTs
+function handleLutChange(index, file) {
+  if (!file) return;
+  if (lutUrls[index]) URL.revokeObjectURL(lutUrls[index]);
+  lutUrls[index] = URL.createObjectURL(file);
+  
+  const r = lutRefs[index];
+  if (r.status) r.status.textContent = t('reel.loaded');
+  if (r.item) r.item.classList.add('loaded');
+  if (r.btn) r.btn.style.display = 'block';
+  
+  if (!activeLutIndex) {
+    setActiveLut(index);
+  } else if (activeLutIndex === index) {
+    setGradedSrc(lutUrls[index]); // restaura la opacidad aunque hubiera un fade interrumpido
+  }
+  
+  checkAndInitReel();
+}
+
+forEachLut((index, r) => {
+  if (r.input) {
+    r.input.addEventListener('change', e => {
+      const f = e.target.files[0];
+      handleLutChange(index, f);
+    });
+  }
+  if (r.btn) {
+    r.btn.addEventListener('click', e => {
+      e.stopPropagation();
+      setActiveLut(index);
+    });
+  }
+});
+
+// Drag & Drop en la zona RAW
+function setupDragDrop(zone, input, hint, loadedText) {
+  zone.addEventListener('dragover', e => {
+    e.preventDefault();
+    zone.style.background = 'rgba(201, 168, 76, 0.08)';
+  });
+  zone.addEventListener('dragleave', () => {
+    zone.style.background = '';
+  });
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.style.background = '';
+    const f = e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) {
+      input.files = e.dataTransfer.files;
+      input.dispatchEvent(new Event('change'));
+    }
+  });
+}
+setupDragDrop(uploadZoneRaw, inputImageRaw, hintRaw, 'Original Cargado');
+
+// Reset de imágenes y retorno al estado original
+reelResetBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  
+  if (rawUrl) {
+    URL.revokeObjectURL(rawUrl);
+    rawUrl = null;
+  }
+  activeLutIndex = null;
+  clearTimeout(lutFadeTimer); // que un fade pendiente no reasigne un src ya revocado
+
+  inputImageRaw.value = '';
+  forEachLut((id, r) => {
+    if (lutUrls[id]) {
+      URL.revokeObjectURL(lutUrls[id]);
+      lutUrls[id] = null;
+    }
+    if (r.input) r.input.value = '';
+    if (r.status) r.status.textContent = t('reel.pending');
+    if (r.item) r.item.classList.remove('loaded');
+    if (r.btn) {
+      r.btn.style.display = 'none';
+      r.btn.classList.remove('active');
+    }
+  });
+
+  imgRaw.removeAttribute('src');
+  imgGraded.removeAttribute('src');
+
+  uploadZoneRaw.classList.remove('loaded');
+  hintRaw.textContent = t('reel.rawhint');
+  
+  const labelEl = document.getElementById('gradedLabel');
+  if (labelEl) labelEl.textContent = 'COLOR GRADED';
+  
+  reelPh.style.display = 'flex';
+  comparisonSlider.classList.remove('active');
+  reelResetBtn.classList.remove('active');
+});
+
+/* Carga automática del antes/después fijo del reel — DIFERIDA hasta que el reel
+   se acerca al viewport (no compite con el arranque de la página).
+
+   MODO VÍDEO (preferido): pon el MISMO clip sin gradar y ya gradado en
+     videos/reel-antes.mp4   y   videos/reel-despues.mp4
+   (mismo corte y duración; 720p–1080p, 6–15 s, H.264 sin audio, faststart).
+   Los dos vídeos van sincronizados, se pausan fuera de pantalla y solo se
+   descargan cuando el visitante llega al reel: coste contenido incluso en gama baja.
+
+   MODO IMAGEN (fallback): videos/reel-antes.jpg y videos/reel-despues.jpg.
+   Si no existe nada, se mantiene la zona de subida (solo la ves tú). */
+const vidRaw=document.getElementById('vidRaw');
+const vidGraded=document.getElementById('vidGraded');
+let reelVideoMode=false;
+
+function playReelVideos(){ if(reelVideoMode){vidRaw.play().catch(()=>{});vidGraded.play().catch(()=>{});} }
+function pauseReelVideos(){ if(reelVideoMode){vidRaw.pause();vidGraded.pause();} }
+// Re-sincronización barata: timeupdate dispara ~4 veces/s y solo durante la reproducción
+vidRaw.addEventListener('timeupdate',()=>{
+  if(!reelVideoMode)return;
+  if(Math.abs(vidRaw.currentTime-vidGraded.currentTime)>0.12)
+    vidGraded.currentTime=vidRaw.currentTime;
+});
+
+function tryReelVideos(onFail){
+  let okCount=0,failed=false;
+  const pairs=[[vidRaw,'videos/reel-antes.mp4'],[vidGraded,'videos/reel-despues.mp4']];
+  pairs.forEach(pair=>{
+    const v=pair[0];
+    v.addEventListener('loadeddata',()=>{
+      if(failed||++okCount<2)return; // solo con LOS DOS vídeos disponibles
+      reelVideoMode=true;
+      imgRaw.style.display='none';imgGraded.style.display='none';
+      vidRaw.style.display='block';vidGraded.style.display='block';
+      const lutSel=document.getElementById('lutSelectorContainer');
+      if(lutSel)lutSel.style.display='none'; // el grading va horneado en el vídeo
+      reelPh.style.display='none';
+      comparisonSlider.classList.add('active');
+      playReelVideos();
+    },{once:true});
+    v.addEventListener('error',()=>{
+      if(failed)return;
+      failed=true;
+      vidRaw.removeAttribute('src');vidGraded.removeAttribute('src');
+      vidRaw.load();vidGraded.load(); // aborta la descarga del que sí existía
+      onFail(); // sin vídeos → probar con las imágenes
+    },{once:true});
+    v.preload='auto'; // el preload="none" del HTML solo evita descargas antes de tiempo
+    v.src=pair[1];
+  });
+}
+
+function loadReelImagesDefault(){
+  const RAW='videos/reel-antes.jpg', GRADED='videos/reel-despues.jpg';
+  let ok=0;
+  function ready(){
+    if(++ok<2)return; // solo activar si EXISTEN las dos imágenes (evita un panel RAW roto)
+    if(comparisonSlider.classList.contains('active'))return; // ya hay contenido (subida manual)
+    imgRaw.src=RAW;
+    imgGraded.src=GRADED;
+    imgGraded.style.opacity='1';
+    reelPh.style.display='none';
+    comparisonSlider.classList.add('active');
+  }
+  [RAW,GRADED].forEach(src=>{
+    const probe=new Image();
+    probe.onload=ready;
+    probe.onerror=()=>{};
+    probe.src=src;
+  });
+}
+
+// Un único observer del reel: dispara la carga al acercarse y pausa/reanuda los vídeos
+const reelPlayerEl=document.getElementById('reelPlayer');
+let reelProbed=false;
+if(reelPlayerEl&&'IntersectionObserver'in window){
+  new IntersectionObserver(es=>{
+    const vis=es[0].isIntersecting;
+    if(vis&&!reelProbed){
+      reelProbed=true;
+      if(!comparisonSlider.classList.contains('active'))tryReelVideos(loadReelImagesDefault);
+    }
+    if(vis)playReelVideos();else pauseReelVideos();
+  },{rootMargin:'25% 0px'}).observe(reelPlayerEl);
+}else{
+  loadReelImagesDefault();
+}
+
+// Control interactivo del slider — sigue el ratón aunque salga del elemento
+let sliderActive = false;
+let rafSlider = null;
+let pendingClientX = null;
+
+function applySliderPos() {
+  if (pendingClientX === null) { rafSlider = null; return; }
+  const rect = comparisonSlider.getBoundingClientRect();
+  let x = pendingClientX - rect.left;
+  x = Math.max(0, Math.min(rect.width, x));
+  const pct = (x / rect.width) * 100;
+  comparisonSlider.style.setProperty('--split-pos', `${pct.toFixed(3)}%`);
+  pendingClientX = null;
+  rafSlider = null;
+}
+
+function scheduleSlider(clientX) {
+  pendingClientX = clientX;
+  if (!rafSlider) rafSlider = requestAnimationFrame(applySliderPos);
+}
+
+// Hover libre (sin drag) — mueve el divisor al pasar el ratón
+comparisonSlider.addEventListener('mousemove', e => {
+  if (!sliderActive) scheduleSlider(e.clientX);
+});
+
+// Drag — sigue el ratón aunque salga del slider
+comparisonSlider.addEventListener('mousedown', e => {
+  sliderActive = true;
+  scheduleSlider(e.clientX);
+  e.preventDefault();
+});
+document.addEventListener('mousemove', e => {
+  if (sliderActive) scheduleSlider(e.clientX);
+}, { passive: true });
+document.addEventListener('mouseup', () => { sliderActive = false; });
+
+// Táctil
+comparisonSlider.addEventListener('touchmove', e => {
+  if (e.touches && e.touches[0]) scheduleSlider(e.touches[0].clientX);
+}, { passive: true });
+
+/* ── PORTFOLIO VIDEOS ────────────────────────────────── */
+window.triggerPV=function(i){document.getElementById('pi'+i).click();};
+const pvUrls={};
+for(let i=0;i<5;i++){
+  document.getElementById('pi'+i).addEventListener('change',function(e){
+    const f=e.target.files[0];if(!f)return;
+    const vid=document.getElementById('pv'+i);
+    if(pvUrls[i])URL.revokeObjectURL(pvUrls[i]);
+    pvUrls[i]=URL.createObjectURL(f);
+    vid.src=pvUrls[i];
+    vid.classList.add('has-src');
+    vid.play().catch(()=>{});
+  });
+}
+/* Carga automática de los vídeos fijos de la galería — DIFERIDA.
+   → Pon tus archivos en:  videos/trabajo-1.mp4 … videos/trabajo-5.mp4
+   Cada vídeo solo se descarga cuando su tarjeta se acerca al viewport,
+   y se pausa al salir de pantalla (ahorra CPU/red en móvil).
+   Si falta alguno, ese hueco mantiene el fondo de color (no rompe nada). */
+const PV_DEFAULTS=['videos/trabajo-1.mp4','videos/trabajo-2.mp4','videos/trabajo-3.mp4','videos/trabajo-4.mp4','videos/trabajo-5.mp4'];
+const pvStarted={},pvVisible={};
+function pvLoadDefault(i){
+  if(pvStarted[i]||pvUrls[i])return; // ya iniciado o el usuario subió uno manualmente
+  pvStarted[i]=true;
+  const vid=document.getElementById('pv'+i);
+  vid.addEventListener('loadeddata',()=>{
+    vid.classList.add('has-src');
+    if(pvVisible[i])vid.play().catch(()=>{}); // solo reproduce si la tarjeta está de verdad en pantalla
+  },{once:true});
+  vid.addEventListener('error',()=>{vid.removeAttribute('src');vid.classList.remove('has-src');},{once:true});
+  vid.src=PV_DEFAULTS[i];
+}
+// Precarga con margen amplio (sin reproducir)…
+const pvLoadIO=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      pvLoadDefault(+en.target.dataset.pv);
+      pvLoadIO.unobserve(en.target);
+    }
+  });
+},{rootMargin:'30% 0px'});
+// …y reproducción/pausa solo con la tarjeta visible (evita varios vídeos decodificando a la vez en gama baja)
+const pvPlayIO=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    const vid=en.target,i=+vid.dataset.pv;
+    pvVisible[i]=en.isIntersecting;
+    if(en.isIntersecting){
+      if(vid.getAttribute('src')&&vid.paused)vid.play().catch(()=>{});
+    }else if(vid.getAttribute('src')&&!vid.paused){
+      vid.pause();
+    }
+  });
+});
+for(let i=0;i<5;i++){
+  const vid=document.getElementById('pv'+i);
+  vid.dataset.pv=i;
+  pvLoadIO.observe(vid);
+  pvPlayIO.observe(vid);
+}
+
+/* ── SCROLL REVEAL ──────────────────────────────────── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ── FORM → abre el cliente de correo (mailto) ───────── */
+document.getElementById('sendBtn').addEventListener('click',()=>{
+  const name=(document.getElementById('fname').value||'').trim();
+  const email=(document.getElementById('femail').value||'').trim();
+  const project=(document.getElementById('fproject').value||'').trim();
+  const msg=(document.getElementById('fmsg').value||'').trim();
+  const subject=encodeURIComponent(project?`Project enquiry — ${project}`:'Project enquiry');
+  const body=encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nProject type: ${project}\n\n${msg}`
+  );
+  window.location.href=`mailto:lunfilmstudio@gmail.com?subject=${subject}&body=${body}`;
+});
+
+/* ── I18N: EN (default) / DA ─────────────────────────── */
+const I18N={
+  en:{
+    'loader':'Loading...',
+    'nav.color':'Color','nav.work':'Work','nav.services':'Services','nav.about':'About','nav.contact':'Contact',
+    'hero.eyebrow':'Videographer &amp; Editor · Sony FX6 · Randers, Denmark',
+    'hero.subtitle':"I come from content creation — so I don't just shoot beautiful images, I understand what makes people watch",
+    'hero.cta1':'View work','hero.cta2':'Get in touch','hero.scroll':'Scroll','hero.upload':'Click to upload your cover video',
+    'reel.label':'Color grading','reel.title1':'Before','reel.title2':'&amp; After','reel.available':'Available for projects',
+    'reel.rawtitle':'Base image (RAW)','reel.rawhint':'Click to upload','reel.luttitle':'Choose and upload each LUT',
+    'reel.upload':'Upload','reel.pending':'Pending','reel.loaded':'Loaded','reel.change':'+ Change images',
+    'fact.camera':'Camera &amp; kit','fact.software':'Color &amp; edit','fact.langs':'Languages (DA in progress)','fact.base':'Based in Jutland',
+    'work.label':'Work','work.title':'Personal<br><em>Projects</em>',
+    'work.p1cat':'Personal project','work.p2cat':'Personal mini-doc','work.p3cat':'Spec commercial','work.p4cat':'Personal project','work.p5cat':'Personal project',
+    'tag.doc':'Documentary','tag.commercial':'Commercial','tag.landscape':'Landscape','tag.portrait':'Portrait',
+    'serv.label':'Services','serv.title':'What I<br><em>do</em>',
+    'serv.1t':'Videography','serv.1d':'I shoot clean, cinematic footage with a Sony FX6 — from interviews and events to brand and social content. Camera, lighting and sound handled by one person.',
+    'serv.2t':'Video Editing','serv.2d':'I build the story in the edit — pacing, rhythm and sound so every cut has a reason. From long-form pieces to fast, scroll-stopping social edits.',
+    'serv.3t':'Color Grading','serv.3d':'I grade in DaVinci Resolve to give footage a consistent, intentional look — matching shots, setting mood and building a visual signature for the project.',
+    'serv.4t':'Short-form Content','serv.4d':"I come from content creation, so I don't just film — I know what makes people stop and watch. Reels and short-form built to actually perform, not just look good.",
+    'serv.5t':'Local Business Video','serv.5d':'Simple, honest video for local businesses in Randers and Jutland — a café, a shop, a service. One clip that shows what you do and why people should care.',
+    'serv.6t':'Content Strategy','serv.6d':"Before the camera rolls, I help figure out what to make and why. I've grown and monetized an audience from scratch, so I think about the goal, not just the shot.",
+    'serv.tool.light':'Lighting','serv.tool.audio':'Audio','serv.tool.reels':'Reels','serv.tool.shortform':'Short-form','serv.tool.strategy':'Strategy','serv.tool.promo':'Promo','serv.tool.social':'Social','serv.tool.local':'Local','serv.tool.planning':'Planning','serv.tool.growth':'Growth',
+    'about.label':'About','about.title':"I don't just<br>shoot images —<br>I know what<br>makes people <em>watch</em>",
+    'about.body':"I come from content creation. Before I picked up the FX6, I grew a niche account from 300 to 3,000 followers organically and turned that attention into real income — so I think about the goal of a video, not just how it looks.<br><br>Now based in Randers, I shoot and edit my own work: camera, lighting, sound and color grading in DaVinci Resolve. My portfolio is young and honest — personal and spec projects for now — and it grows with every real shoot. I'm learning Danish and open to collaborating across Jutland.",
+    'about.f1l':'Camera &amp; kit','about.f1v':'Sony FX6 · lighting · audio',
+    'about.f2l':'Software','about.f2v':'DaVinci Resolve · Premiere Pro',
+    'about.f3l':'Strengths','about.f3v':'Videography · editing · color · short-form content',
+    'about.f4l':'Languages','about.f4v':'Spanish (native) · English (fluent) · Danish (learning)',
+    'about.f5l':'Based in','about.f5v':'Randers, Denmark · Jutland &amp; remote',
+    'contact.heading':"Let's talk.",'contact.sub':'Open to new projects',
+    'contact.availlabel':'Availability','contact.availvalue':'Available now · freelance',
+    'contact.loclabel':'Location','contact.locvalue':'Randers, Denmark · Jutland &amp; remote',
+    'contact.langlabel':'Languages',
+    'form.name':'Full name','form.project':'Project type','form.msg':'Tell me about your project','form.send':'Send message'
+  },
+  da:{
+    'loader':'Indlæser...',
+    'nav.color':'Farve','nav.work':'Arbejde','nav.services':'Ydelser','nav.about':'Om mig','nav.contact':'Kontakt',
+    'hero.eyebrow':'Videograf &amp; Editor · Sony FX6 · Randers, Danmark',
+    'hero.subtitle':'Jeg kommer fra content-skabelse — så jeg laver ikke bare smukke billeder, jeg forstår, hvad der får folk til at se med',
+    'hero.cta1':'Se mit arbejde','hero.cta2':'Kontakt mig','hero.scroll':'Scroll','hero.upload':'Klik for at uploade din forsidevideo',
+    'reel.label':'Farvegradering','reel.title1':'Før','reel.title2':'&amp; Efter','reel.available':'Ledig til projekter',
+    'reel.rawtitle':'Basisbillede (RAW)','reel.rawhint':'Klik for at uploade','reel.luttitle':'Vælg og upload hver LUT',
+    'reel.upload':'Upload','reel.pending':'Afventer','reel.loaded':'Indlæst','reel.change':'+ Skift billeder',
+    'fact.camera':'Kamera &amp; udstyr','fact.software':'Farve &amp; redigering','fact.langs':'Sprog (DA undervejs)','fact.base':'Bosat i Jylland',
+    'work.label':'Arbejde','work.title':'Personlige<br><em>projekter</em>',
+    'work.p1cat':'Personligt projekt','work.p2cat':'Personlig mini-doku','work.p3cat':'Spec-reklame','work.p4cat':'Personligt projekt','work.p5cat':'Personligt projekt',
+    'tag.doc':'Dokumentar','tag.commercial':'Reklame','tag.landscape':'Landskab','tag.portrait':'Portræt',
+    'serv.label':'Ydelser','serv.title':'Hvad jeg<br><em>laver</em>',
+    'serv.1t':'Videografi','serv.1d':'Jeg optager rene, filmiske billeder med et Sony FX6 — fra interviews og events til brand- og social-content. Kamera, lys og lyd klaret af én person.',
+    'serv.2t':'Videoredigering','serv.2d':'Jeg bygger fortællingen i klippet — tempo, rytme og lyd, så hvert klip har en grund. Fra lange formater til hurtige social-edits, der stopper scrollen.',
+    'serv.3t':'Farvegradering','serv.3d':'Jeg graderer i DaVinci Resolve for at give billederne et ensartet, bevidst look — matcher optagelser, sætter stemning og bygger et visuelt signatur-udtryk.',
+    'serv.4t':'Kort content','serv.4d':'Jeg kommer fra content-skabelse, så jeg optager ikke bare — jeg ved, hvad der får folk til at stoppe op og se med. Reels og kort content bygget til at virke, ikke bare se godt ud.',
+    'serv.5t':'Video til lokale virksomheder','serv.5d':'Enkel, ærlig video til lokale virksomheder i Randers og Jylland — en café, en butik, en service. Ét klip, der viser, hvad du laver, og hvorfor folk skal bryde sig om det.',
+    'serv.6t':'Content-strategi','serv.6d':'Før kameraet ruller, hjælper jeg med at finde ud af hvad og hvorfor. Jeg har selv skabt og tjent penge på et publikum fra bunden, så jeg tænker på målet, ikke kun optagelsen.',
+    'serv.tool.light':'Lys','serv.tool.audio':'Lyd','serv.tool.reels':'Reels','serv.tool.shortform':'Kort content','serv.tool.strategy':'Strategi','serv.tool.promo':'Promo','serv.tool.social':'Social','serv.tool.local':'Lokal','serv.tool.planning':'Planlægning','serv.tool.growth':'Vækst',
+    'about.label':'Om mig','about.title':'Jeg laver ikke<br>bare billeder —<br>jeg ved, hvad der<br>får folk til at <em>se med</em>',
+    'about.body':'Jeg kommer fra content-skabelse. Før jeg tog fat i FX6, voksede jeg en niche-konto fra 300 til 3.000 følgere organisk og omsatte den opmærksomhed til rigtig indtjening — så jeg tænker på formålet med en video, ikke kun på, hvordan den ser ud.<br><br>Nu bosat i Randers optager og redigerer jeg mit eget arbejde: kamera, lys, lyd og farvegradering i DaVinci Resolve. Min portfolio er ung og ærlig — personlige og spec-projekter indtil videre — og den vokser med hver rigtig optagelse. Jeg lærer dansk og er åben for samarbejde i hele Jylland.',
+    'about.f1l':'Kamera &amp; udstyr','about.f1v':'Sony FX6 · lys · lyd',
+    'about.f2l':'Software','about.f2v':'DaVinci Resolve · Premiere Pro',
+    'about.f3l':'Styrker','about.f3v':'Videografi · redigering · farve · kort content',
+    'about.f4l':'Sprog','about.f4v':'Spansk (modersmål) · Engelsk (flydende) · Dansk (undervejs)',
+    'about.f5l':'Bosat i','about.f5v':'Randers, Danmark · Jylland &amp; remote',
+    'contact.heading':'Lad os tale sammen.','contact.sub':'Åben for nye projekter',
+    'contact.availlabel':'Tilgængelighed','contact.availvalue':'Ledig nu · freelance',
+    'contact.loclabel':'Lokation','contact.locvalue':'Randers, Danmark · Jylland &amp; remote',
+    'contact.langlabel':'Sprog',
+    'form.name':'Fulde navn','form.project':'Projekttype','form.msg':'Fortæl mig om dit projekt','form.send':'Send besked'
+  }
+};
+window.CURRENT_LANG='en';
+function applyLang(lang){
+  if(!I18N[lang]) lang='en';
+  window.CURRENT_LANG=lang;
+  document.documentElement.lang=lang;
+  const dict=I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v=dict[el.getAttribute('data-i18n')];
+    if(v!=null) el.innerHTML=v;
+  });
+  const lp=document.getElementById('loaderPct');
+  if(lp&&lp.textContent&&!/%/.test(lp.textContent)) lp.textContent=dict['loader'];
+  document.querySelectorAll('.lang-opt').forEach(o=>o.classList.toggle('active',o.getAttribute('data-lang')===lang));
+  syncReelStatus(); // los estados 'Loaded' de las zonas de subida no viven en data-i18n
+  try{localStorage.setItem('site_lang',lang);}catch(e){}
+}
+(function initLang(){
+  let saved='en';
+  try{saved=localStorage.getItem('site_lang')||'en';}catch(e){}
+  if(saved!=='en')applyLang(saved); // 'en' ya está renderizado en el HTML: evita reescribir ~66 nodos en el arranque
+  function toggle(){applyLang(window.CURRENT_LANG==='en'?'da':'en');}
+  const t1=document.getElementById('langToggle'),t2=document.getElementById('langToggleDrawer');
+  if(t1)t1.addEventListener('click',toggle);
+  if(t2)t2.addEventListener('click',toggle);
+})();
+
+})();
+</script>
+</body>
+</html>
